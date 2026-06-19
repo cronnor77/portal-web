@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negocios — Suljaa'</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="main main--negocios">
+
+        <!-- NAVBAR -->
+
+        <div class="navbar">
+            <button class="menu-toggle">☰</button>
+
+            <div class="icon">
+                <h2 class="logo">Suljaa'</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="historia.html">Historia</a></li>
+                    <li><a href="negocios.html" class="active-link">Negocios</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="#">Foro</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input
+                    class="srch"
+                    type="search"
+                    placeholder="Buscar">
+
+                <a href="#">
+                    <button class="btn">Buscar</button>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- HERO -->
+
+        <div class="page-hero">
+            <p class="page-eyebrow">Directorio · Suljaa'</p>
+            <h1>Negocios locales</h1>
+            <p class="page-subtitle">
+                Conoce los comercios, talleres y servicios que dan vida
+                a la economía de Suljaa'.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- DIRECTORIO -->
+
+    <main class="directory">
+
+        <!-- FILTRO DE CATEGORÍAS -->
+
+        <div class="filter-bar">
+
+            <label for="categoria" class="filter-label">Filtrar por categoría</label>
+
+            <select id="categoria" class="filter-select">
+                <option value="todos">Todos los negocios</option>
+                <option value="artesania">Artesanía</option>
+                <option value="comida">Comida y bebida</option>
+                <option value="hospedaje">Hospedaje</option>
+                <option value="servicios">Servicios</option>
+            </select>
+
+        </div>
+
+        <!-- GRID DE NEGOCIOS -->
+
+        <div class="business-grid">
+
+            <!-- NEGOCIO 1 -->
+            <div class="business-card" data-categoria="artesania">
+                <div class="business-image">
+                    <img src="img/negocio-tejidos.jpg" alt="Telar tradicional Ñomndaa">
+                    <span class="business-tag">Artesanía</span>
+                </div>
+                <div class="business-info">
+                    <h3>Telar Ñomndaa</h3>
+                    <p class="business-desc">
+                        Tejidos y bordados tradicionales hechos a mano,
+                        con técnicas heredadas de generación en generación.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Calle Principal s/n, Suljaa'</span>
+                        <a href="mapa.html?negocio=telar-nomndaa" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 2 -->
+            <div class="business-card" data-categoria="comida">
+                <div class="business-image">
+                    <img src="img/negocio-comida1.jpg" alt="Cocina tradicional de Suljaa'">
+                    <span class="business-tag">Comida y bebida</span>
+                </div>
+                <div class="business-info">
+                    <h3>Comedor Leo</h3>
+                    <p class="business-desc">
+                        Platillos tradicionales preparados con ingredientes
+                        locales y recetas familiares de varias generaciones.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Av. Centro , Suljaa'</span>
+                        <a href="mapa.html?negocio=comedor-leo" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 3 -->
+            <div class="business-card" data-categoria="hospedaje">
+                <div class="business-image">
+                    <img src="img/negocio-hospedaje.jpg" alt="Posada en Suljaa'">
+                    <span class="business-tag">Hospedaje</span>
+                </div>
+                <div class="business-info">
+                    <h3>Hotel La india Bonita</h3>
+                    <p class="business-desc">
+                        Habitaciones cómodas con vista a la naturaleza,
+                        ideales para descansar durante tu visita a Suljaa'.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Camino al Río 8, Suljaa'</span>
+                        <a href="mapa.html?negocio=hotel-india-bonita" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 4 -->
+            <div class="business-card" data-categoria="servicios">
+                <div class="business-image">
+                    <img src="img/negocio-servicios1.jpg" alt="Taller de mecánica en Suljaa'">
+                    <span class="business-tag">Servicios</span>
+                </div>
+                <div class="business-info">
+                    <h3>Taller Lalo</h3>
+                    <p class="business-desc">
+                        Mantenimiento y reparación de vehículos, con
+                        atención rápida y de confianza para la comunidad.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Carretera Suljaa' km 2</span>
+                        <a href="mapa.html?negocio=taller-lalo" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 5 -->
+            <div class="business-card" data-categoria="comida">
+                <div class="business-image">
+                    <img src="img/negocio-comida2.jpg" alt="Panadería en Suljaa'">
+                    <span class="business-tag">Comida y bebida</span>
+                </div>
+                <div class="business-info">
+                    <h3>Panadería El Abuelo</h3>
+                    <p class="business-desc">
+                        Pan dulce y salado horneado diariamente, con
+                        recetas tradicionales y un aroma inconfundible.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Calle Hidalgo 5, Suljaa'</span>
+                        <a href="mapa.html?negocio=panaderia-abuelo" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 6 -->
+            <div class="business-card" data-categoria="artesania">
+                <div class="business-image">
+                    <img src="img/negocio-artesania2.jpg" alt="Taller de barro en Suljaa'">
+                    <span class="business-tag">Artesanía</span>
+                </div>
+                <div class="business-info">
+                    <h3>Barro y Tradición</h3>
+                    <p class="business-desc">
+                        Piezas de barro elaboradas a mano,
+                        inspiradas en motivos y símbolos de la región.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Carretera, Suljaa'</span>
+                        <a href="mapa.html?negocio=barro-tradicion" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 7 -->
+            <div class="business-card" data-categoria="hospedaje">
+                <div class="business-image">
+                    <img src="img/negocio-hospedaje2.jpg" alt="Cabañas en Suljaa'">
+                    <span class="business-tag">Hospedaje</span>
+                </div>
+                <div class="business-info">
+                    <h3>Hotel Girasol</h3>
+                    <p class="business-desc">
+                        Espacios rústicos rodeados de naturaleza, perfectos
+                        para desconectarte y vivir la experiencia local.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Cruz larga, Suljaa'</span>
+                        <a href="mapa.html?negocio=hotel-girasol" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEGOCIO 8 -->
+            <div class="business-card" data-categoria="servicios">
+                <div class="business-image">
+                    <img src="img/negocio-servicios2.jpg" alt="Tienda de abarrotes en Suljaa'">
+                    <span class="business-tag">Servicios</span>
+                </div>
+                <div class="business-info">
+                    <h3>Abarrotes Cruz Larga</h3>
+                    <p class="business-desc">
+                        Productos básicos y de la región para el día a día
+                        de las familias de Suljaa'.
+                    </p>
+                    <div class="business-location">
+                        <span class="business-address">Esquina Centro, Suljaa'</span>
+                        <a href="mapa.html?negocio=abarrotes-esquina" class="map-link">Ver en el mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MENSAJE SIN RESULTADOS -->
+
+        <p class="no-results">No hay negocios en esta categoría todavía.</p>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

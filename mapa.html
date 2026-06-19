@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa — Suljaa'</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- LEAFLET (mapa interactivo, gratis, sin API key) -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+</head>
+
+<body>
+
+    <div class="main main--mapa">
+
+        <!-- NAVBAR -->
+
+        <div class="navbar">
+            <button class="menu-toggle">☰</button>
+
+            <div class="icon">
+                <h2 class="logo">Suljaa'</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="historia.html">Historia</a></li>
+                    <li><a href="negocios.html">Negocios</a></li>
+                    <li><a href="mapa.html" class="active-link">Mapa</a></li>
+                    <li><a href="#">Foro</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input
+                    class="srch"
+                    type="search"
+                    placeholder="Buscar">
+
+                <a href="#">
+                    <button class="btn">Buscar</button>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- HERO -->
+
+        <div class="page-hero">
+            <p class="page-eyebrow">Ubicaciones · Suljaa'</p>
+            <h1>Mapa de la comunidad</h1>
+            <p class="page-subtitle">
+                Encuentra los negocios de Suljaa' y explora las localidades
+                del municipio de Xochistlahuaca.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- MAPA PRINCIPAL: SULJAA' -->
+
+    <main class="map-page">
+
+        <section class="map-main-section">
+
+            <h2 class="section-title">Suljaa' (cabecera municipal)</h2>
+
+            <div class="map-layout">
+
+                <!-- PANEL LATERAL -->
+
+                <aside class="map-sidebar">
+
+                    <h3 class="sidebar-title">Negocios</h3>
+
+                    <ul class="sidebar-list" id="sidebar-list">
+                        <!-- Generado dinámicamente desde script.js -->
+                    </ul>
+
+                </aside>
+
+                <!-- MAPA -->
+
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- LOCALIDADES DEL MUNICIPIO -->
+
+        <section class="localities-section">
+
+            <h2 class="section-title">Localidades del municipio</h2>
+
+            <p class="section-subtitle">
+                Xochistlahuaca (Suljaa') es la cabecera de un municipio con
+                más de 100 localidades. Explora algunas de ellas:
+            </p>
+
+            <div class="locality-grid" id="locality-grid">
+                <!-- Las cajas de localidad se generan dinámicamente
+                     desde script.js a partir del arreglo "localidades" -->
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MODAL: MAPA AMPLIADO DE LA LOCALIDAD -->
+
+    <div class="locality-modal" id="locality-modal">
+
+        <div class="locality-modal-content">
+
+            <button class="modal-close" id="modal-close">✕</button>
+
+            <h3 class="modal-title" id="modal-title">Nombre de la localidad</h3>
+            <p class="modal-subtitle" id="modal-subtitle">Negocios en esta localidad</p>
+
+            <div class="modal-map-container">
+                <div id="modal-map"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <!-- LEAFLET (lógica del mapa) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
