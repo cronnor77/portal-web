@@ -506,7 +506,7 @@ ul li a:hover{
         rgba(0,0,0,0.65) 30%,
         rgba(0,0,0,0.65) 100%
     ),
-    url("img/historia-hero.jpg");
+    url("img/historia-hero.webp");
 
     background-position: center;
     background-size: cover;
@@ -807,7 +807,7 @@ ul li a:hover{
         rgba(0,0,0,0.65) 30%,
         rgba(0,0,0,0.65) 100%
     ),
-    url("img/negocios-hero.jpg");
+    url("img/negocios-hero.webp");
  
     background-position: center;
     background-size: cover;
@@ -1091,7 +1091,7 @@ ul li a:hover{
         rgba(0,0,0,0.65) 30%,
         rgba(0,0,0,0.65) 100%
     ),
-    url("img/mapa-hero.jpg");
+    url("img/mapa-hero.webp");
 
     background-position: center;
     background-size: cover;
