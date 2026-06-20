@@ -299,6 +299,21 @@ if(mapDiv){
         maxZoom: 19
     }).addTo(map);
 
+    /* Leaflet calcula el tamaño del mapa en el momento exacto en
+       que se crea. En celular, si el contenedor todavía no tiene
+       su tamaño final en ese instante, el mapa queda mal dibujado
+       aunque el CSS sea correcto. Forzamos un recalculo después
+       de que todo termine de cargar y también si la pantalla
+       cambia de tamaño (ej. al rotar el celular). */
+
+    window.addEventListener("load", () => {
+        map.invalidateSize();
+    });
+
+    window.addEventListener("resize", () => {
+        map.invalidateSize();
+    });
+
     /* Crear un marcador por negocio y guardarlo junto a su id */
 
     const marcadores = {};
@@ -317,59 +332,6 @@ if(mapDiv){
         marcadores[negocio.id] = marker;
 
     });
-
-    /* Construir el panel lateral a partir del mismo arreglo */
-
-    const sidebarList = document.getElementById("sidebar-list");
-
-    negocios.forEach(negocio => {
-
-        const li = document.createElement("li");
-        li.className = "sidebar-item";
-        li.dataset.id = negocio.id;
-
-        li.innerHTML = `
-            <span>${negocio.categoria}</span>
-            <h4>${negocio.nombre}</h4>
-        `;
-
-        li.addEventListener("click", () => {
-
-            map.setView([negocio.lat, negocio.lng], 17);
-            marcadores[negocio.id].openPopup();
-
-            document.querySelectorAll(".sidebar-item").forEach(item => {
-                item.classList.remove("is-active");
-            });
-
-            li.classList.add("is-active");
-
-        });
-
-        sidebarList.appendChild(li);
-
-    });
-
-    /* Si llegamos desde negocios.html con ?negocio=id,
-       centrar y abrir ese marcador automáticamente */
-
-    const parametros = new URLSearchParams(window.location.search);
-    const idNegocio = parametros.get("negocio");
-
-    if(idNegocio && marcadores[idNegocio]){
-
-        const negocioActivo = negocios.find(n => n.id === idNegocio);
-
-        map.setView([negocioActivo.lat, negocioActivo.lng], 17);
-        marcadores[idNegocio].openPopup();
-
-        const itemActivo = document.querySelector(`.sidebar-item[data-id="${idNegocio}"]`);
-
-        if(itemActivo){
-            itemActivo.classList.add("is-active");
-        }
-
-    }
 
     /* ---------------------------------------------------
        SITIOS TURÍSTICOS (página Turismo, mismo mapa de Suljaa')
@@ -422,7 +384,7 @@ if(mapDiv){
         },
         {
             id: "iglesia",
-            nombre: "Iglesia de San Miguel Arcángel",
+            nombre: "Iglesia de San Sebastián",
             tipo: "Religioso",
             direccion: "Centro de Xochistlahuaca, Suljaa'",
             lat: 16.7917,
@@ -458,11 +420,14 @@ if(mapDiv){
         className: "marker-turismo"
     });
 
+    /* Los marcadores de turismo se crean pero ocultos por
+       defecto (el tab inicial del panel es "Negocios") */
+
     const marcadoresTurismo = {};
 
     sitiosTuristicos.forEach(sitio => {
 
-        const marker = L.marker([sitio.lat, sitio.lng], { icon: iconoTurismo }).addTo(map);
+        const marker = L.marker([sitio.lat, sitio.lng], { icon: iconoTurismo });
 
         marker.bindPopup(`
             <span class="popup-tag">${sitio.tipo}</span>
@@ -475,17 +440,132 @@ if(mapDiv){
 
     });
 
-    /* Si llegamos desde turismo.html con ?turismo=id,
+    /* ---------- PANEL LATERAL CON TABS (Negocios / Turismo) ---------- */
+
+    const sidebarList = document.getElementById("sidebar-list");
+    const sidebarTabs = document.querySelectorAll(".sidebar-tab");
+
+    let tabActivo = "negocios";
+
+    function renderSidebar(tipo){
+
+        sidebarList.innerHTML = "";
+
+        const datos = tipo === "negocios" ? negocios : sitiosTuristicos;
+        const marcadoresTipo = tipo === "negocios" ? marcadores : marcadoresTurismo;
+
+        datos.forEach(item => {
+
+            const li = document.createElement("li");
+            li.className = "sidebar-item";
+            li.dataset.id = item.id;
+
+            const categoriaTexto = tipo === "negocios" ? item.categoria : item.tipo;
+
+            li.innerHTML = `
+                <span>${categoriaTexto}</span>
+                <h4>${item.nombre}</h4>
+            `;
+
+            li.addEventListener("click", () => {
+
+                map.setView([item.lat, item.lng], 17);
+                marcadoresTipo[item.id].openPopup();
+
+                document.querySelectorAll(".sidebar-item").forEach(el => {
+                    el.classList.remove("is-active");
+                });
+
+                li.classList.add("is-active");
+
+            });
+
+            sidebarList.appendChild(li);
+
+        });
+
+    }
+
+    function cambiarTab(tipo){
+
+        tabActivo = tipo;
+
+        /* Botones de tab */
+
+        sidebarTabs.forEach(tab => {
+            tab.classList.toggle("is-active", tab.dataset.tab === tipo);
+        });
+
+        /* Mostrar solo los marcadores del tipo activo */
+
+        if(tipo === "negocios"){
+
+            Object.values(marcadores).forEach(m => m.addTo(map));
+            Object.values(marcadoresTurismo).forEach(m => map.removeLayer(m));
+
+        }else{
+
+            Object.values(marcadoresTurismo).forEach(m => m.addTo(map));
+            Object.values(marcadores).forEach(m => map.removeLayer(m));
+
+        }
+
+        renderSidebar(tipo);
+
+    }
+
+    sidebarTabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+            cambiarTab(tab.dataset.tab);
+        });
+
+    });
+
+    /* Estado inicial: negocios visibles, turismo oculto */
+
+    cambiarTab("negocios");
+
+    /* Si llegamos desde negocios.html con ?negocio=id,
        centrar y abrir ese marcador automáticamente */
+
+    const parametros = new URLSearchParams(window.location.search);
+    const idNegocio = parametros.get("negocio");
+
+    if(idNegocio && marcadores[idNegocio]){
+
+        const negocioActivo = negocios.find(n => n.id === idNegocio);
+
+        map.setView([negocioActivo.lat, negocioActivo.lng], 17);
+        marcadores[idNegocio].openPopup();
+
+        const itemActivo = document.querySelector(`.sidebar-item[data-id="${idNegocio}"]`);
+
+        if(itemActivo){
+            itemActivo.classList.add("is-active");
+        }
+
+    }
+
+    /* Si llegamos desde turismo.html con ?turismo=id,
+       cambiar al tab de Turismo, centrar y abrir ese marcador */
 
     const idTurismo = parametros.get("turismo");
 
     if(idTurismo && marcadoresTurismo[idTurismo]){
 
+        cambiarTab("turismo");
+
         const sitioActivo = sitiosTuristicos.find(s => s.id === idTurismo);
 
         map.setView([sitioActivo.lat, sitioActivo.lng], 17);
         marcadoresTurismo[idTurismo].openPopup();
+
+        const itemActivo = document.querySelector(`.sidebar-item[data-id="${idTurismo}"]`);
+
+        if(itemActivo){
+            itemActivo.classList.add("is-active");
+        }
 
     }
 

@@ -1648,3 +1648,477 @@ ul li a:hover{
     }
 }
  
+/* ===================================
+   MAPA — ESTILOS
+   (se carga después de style.css, historia y negocios)
+=================================== */
+
+.main--mapa{
+    height: auto;
+    min-height: 45vh;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/mapa-hero.jpg");
+
+    background-position: center;
+    background-size: cover;
+
+    padding-bottom: 60px;
+}
+
+/* ---------- LAYOUT GENERAL ---------- */
+
+.map-page{
+    background: var(--crema);
+    padding: 50px 0 90px;
+}
+
+.section-title{
+    width: min(1200px, 94%);
+    margin: 0 auto 10px;
+
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+
+    border-left: 4px solid var(--naranja);
+    padding-left: 14px;
+}
+
+.section-subtitle{
+    width: min(1200px, 94%);
+    margin: 0 auto 30px;
+
+    font-family: Arial;
+    font-size: 15px;
+    color: var(--gris-texto);
+    padding-left: 18px;
+}
+
+.map-main-section{
+    margin-bottom: 70px;
+}
+
+/* ---------- MAPA PRINCIPAL ---------- */
+
+.map-layout{
+    width: min(1200px, 94%);
+    margin: 20px auto 0;
+
+    display: flex;
+    gap: 28px;
+
+    align-items: flex-start;
+}
+
+.map-sidebar{
+    width: 320px;
+    flex-shrink: 0;
+
+    background: #fff;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    padding: 24px;
+
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+.sidebar-tabs{
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.sidebar-tab{
+    flex: 1;
+
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+
+    padding: 10px 0;
+
+    border: 1.5px solid var(--naranja);
+    border-radius: 30px;
+
+    background: #fff;
+    color: var(--naranja);
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.sidebar-tab:hover{
+    background: #fff3e8;
+}
+
+.sidebar-tab.is-active{
+    background: var(--naranja);
+    color: #fff;
+}
+
+.sidebar-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-item{
+    list-style: none;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+    border: 1px solid #eee;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.sidebar-item:hover{
+    border-color: var(--naranja);
+    background: #fff9f4;
+}
+
+.sidebar-item.is-active{
+    border-color: var(--naranja);
+    background: #fff3e8;
+}
+
+.sidebar-item h4{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.sidebar-item span{
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--naranja);
+}
+
+.map-container{
+    flex-grow: 1;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+#map{
+    width: 100%;
+    height: 560px;
+}
+
+/* ---------- LOCALIDADES: GRID DE CAJAS ---------- */
+
+.locality-grid{
+    width: min(1200px, 94%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.locality-card{
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    cursor: pointer;
+
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.locality-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.14);
+}
+
+.locality-thumb{
+    width: 100%;
+    height: 160px;
+
+    position: relative;
+
+    /* El mapa miniatura de Leaflet vive aquí */
+    overflow: hidden;
+}
+
+/* Evita que el mini-mapa capture scroll/clicks individuales;
+   el clic en toda la tarjeta abre el modal */
+.locality-thumb .leaflet-container{
+    pointer-events: none;
+}
+
+.locality-thumb-overlay{
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.45),
+        rgba(0,0,0,0) 60%
+    );
+}
+
+.locality-info{
+    padding: 18px 20px 22px;
+}
+
+.locality-info h3{
+    font-family: Georgia, serif;
+    font-size: 19px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.locality-info p{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+}
+
+.locality-expand{
+    display: inline-block;
+    margin-top: 10px;
+
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja);
+}
+
+/* ---------- MODAL ---------- */
+
+.locality-modal{
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(0,0,0,.6);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.locality-modal.is-open{
+    display: flex;
+}
+
+.locality-modal-content{
+    background: #fff;
+    border-radius: 18px;
+
+    width: min(900px, 100%);
+    max-height: 90vh;
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow-y: auto;
+
+    animation: modalPop .25s ease;
+}
+
+@keyframes modalPop{
+
+    from{
+        opacity: 0;
+        transform: scale(.96);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.modal-close{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f4f4f4;
+    color: #1a1a1a;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.modal-close:hover{
+    background: var(--naranja);
+    color: #fff;
+}
+
+.modal-title{
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    padding-right: 40px;
+}
+
+.modal-subtitle{
+    font-family: Arial;
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-bottom: 20px;
+}
+
+.modal-map-container{
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+#modal-map{
+    width: 100%;
+    height: 420px;
+}
+
+/* Popups de Leaflet con la tipografía del sitio */
+
+.leaflet-popup-content-wrapper{
+    border-radius: 12px;
+}
+
+.leaflet-popup-content{
+    font-family: Arial;
+    margin: 14px 16px;
+}
+
+.popup-title{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.popup-tag{
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--naranja);
+    margin-bottom: 8px;
+}
+
+.popup-link{
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja);
+    text-decoration: none;
+}
+
+.popup-link:hover{
+    color: #d65f00;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width:1024px){
+
+    .locality-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:768px){
+
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .page-hero h1{
+        font-size: 34px;
+    }
+
+    .section-title{
+        font-size: 22px;
+    }
+
+    .map-layout{
+        flex-direction: column;
+    }
+
+    /* Mapa primero, panel de negocios/turismo después,
+       solo en móvil (en desktop el orden visual no cambia) */
+
+    .map-container{
+        order: 1;
+        flex-grow: 0;
+        width: 100%;
+    }
+
+    .map-sidebar{
+        order: 2;
+        width: 100%;
+        max-height: 240px;
+    }
+
+    #map{
+        width: 100%;
+        height: 360px;
+    }
+
+    .locality-grid{
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .locality-thumb{
+        height: 150px;
+    }
+
+    .locality-modal-content{
+        padding: 22px;
+    }
+
+    .modal-title{
+        font-size: 22px;
+    }
+
+    #modal-map{
+        height: 300px;
+    }
+}
