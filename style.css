@@ -45,7 +45,7 @@
 }
 
 .menu{
-    width: 400px;
+    width: 460px;
     float: left;
     height: 70px;
 }
@@ -59,7 +59,7 @@ ul{
 
 ul li{
     list-style: none;
-    margin-left: 62px;
+    margin-left: 50px;
     margin-top: 27px;
     font-size: 18px;
 }
@@ -79,7 +79,7 @@ ul li a:hover{
 .search{
     width: 330px;
     float: left;
-    margin-left: 270px;
+    margin-left: 210px;
 }
 
 .srch{
@@ -1512,3 +1512,139 @@ ul li a:hover{
         height: 300px;
     }
 }
+/* ===================================
+   TURISMO — ESTILOS
+   (se carga después de style.css, historia, negocios y mapa;
+   reutiliza .business-grid / .business-card de negocios.css
+   para el grid de sitios turísticos) */
+ 
+.main--turismo{
+    height: auto;
+    min-height: 50vh;
+ 
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/turismo-hero.webp");
+ 
+    background-position: center;
+    background-size: cover;
+ 
+    padding-bottom: 60px;
+}
+ 
+.tourism{
+    background: var(--crema);
+    padding: 50px 0 90px;
+}
+ 
+/* ---------- SECCIÓN DEL ZÓCALO (sitio principal) ---------- */
+ 
+.main-spot-section{
+    margin-bottom: 70px;
+}
+ 
+.main-spot-card{
+    width: min(1100px, 90%);
+    margin: 20px auto 0;
+ 
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+ 
+    box-shadow: 0 10px 28px rgba(0,0,0,.1);
+ 
+    display: flex;
+}
+ 
+.main-spot-image{
+    width: 45%;
+    flex-shrink: 0;
+}
+ 
+.main-spot-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 320px;
+}
+ 
+.main-spot-info{
+    padding: 36px 38px;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ 
+.main-spot-info h3{
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+}
+ 
+.main-spot-info p{
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gris-texto);
+    margin-bottom: 24px;
+}
+ 
+.main-spot-location{
+    border-top: 1px solid #eee;
+    padding-top: 18px;
+ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+ 
+/* ---------- TÍTULOS DE SECCIÓN ---------- */
+ 
+.spots-section .section-title{
+    margin-bottom: 30px;
+}
+ 
+/* ===================================
+   RESPONSIVE
+=================================== */
+ 
+@media (max-width:768px){
+ 
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+ 
+    .page-hero h1{
+        font-size: 34px;
+    }
+ 
+    .main-spot-card{
+        flex-direction: column;
+    }
+ 
+    .main-spot-image{
+        width: 100%;
+    }
+ 
+    .main-spot-image img{
+        min-height: 220px;
+    }
+ 
+    .main-spot-info{
+        padding: 26px 24px 30px;
+        text-align: left;
+    }
+ 
+    .main-spot-info h3{
+        font-size: 24px;
+    }
+}
+ 

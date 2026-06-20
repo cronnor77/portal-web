@@ -234,7 +234,7 @@ if(mapDiv){
         },
         {
             id: "cocina-marcela",
-            nombre: "Comedor San Miguel",
+            nombre: "Cocina Doña Marcela",
             categoria: "Comida y bebida",
             direccion: "Av. Centro 12, Suljaa'",
             lat: 16.7908,
@@ -242,15 +242,15 @@ if(mapDiv){
         },
         {
             id: "posada-rio",
-            nombre: "Posada Las Palmas",
+            nombre: "Posada del Río",
             categoria: "Hospedaje",
             direccion: "Camino al Río 8, Suljaa'",
             lat: 16.7896,
             lng: -98.2455
         },
         {
-            id: "ferreteria-lopez",
-            nombre: "Ferretería López",
+            id: "taller-lopez",
+            nombre: "Taller Hermanos López",
             categoria: "Servicios",
             direccion: "Carretera Suljaa' km 2",
             lat: 16.7950,
@@ -372,6 +372,124 @@ if(mapDiv){
     }
 
     /* ---------------------------------------------------
+       SITIOS TURÍSTICOS (página Turismo, mismo mapa de Suljaa')
+       El Zócalo (centro real de Xochistlahuaca) + 7 puntos de
+       interés. Coordenadas puntuales no documentadas se ubican
+       en un radio pequeño alrededor del Zócalo como referencia
+       aproximada; ajustar lat/lng aquí cuando se tengan exactas.
+       --------------------------------------------------- */
+
+    const sitiosTuristicos = [
+        {
+            id: "zocalo",
+            nombre: "El Zócalo",
+            tipo: "Centro de Suljaa'",
+            direccion: "Centro de Xochistlahuaca, Suljaa'",
+            lat: 16.79139,
+            lng: -98.24194
+        },
+        {
+            id: "cerrito",
+            nombre: "El Cerrito",
+            tipo: "Mirador",
+            direccion: "Cerca del centro, Suljaa'",
+            lat: 16.7928,
+            lng: -98.2408
+        },
+        {
+            id: "ayuntamiento",
+            nombre: "El Ayuntamiento",
+            tipo: "Histórico",
+            direccion: "Centro de Xochistlahuaca, Suljaa'",
+            lat: 16.7916,
+            lng: -98.2422
+        },
+        {
+            id: "casa-cultura",
+            nombre: "Casa de la Cultura",
+            tipo: "Cultura",
+            direccion: "Suljaa', Xochistlahuaca",
+            lat: 16.7912,
+            lng: -98.2415
+        },
+        {
+            id: "panteon",
+            nombre: "El Panteón",
+            tipo: "Histórico",
+            direccion: "Suljaa', Xochistlahuaca",
+            lat: 16.7898,
+            lng: -98.2433
+        },
+        {
+            id: "iglesia",
+            nombre: "Iglesia de San Miguel Arcángel",
+            tipo: "Religioso",
+            direccion: "Centro de Xochistlahuaca, Suljaa'",
+            lat: 16.7917,
+            lng: -98.2419
+        },
+        {
+            id: "rio",
+            nombre: "El Río",
+            tipo: "Naturaleza",
+            direccion: "Cercanías de Suljaa'",
+            lat: 16.7945,
+            lng: -98.2447
+        },
+        {
+            id: "museo",
+            nombre: "El Museo",
+            tipo: "Cultura",
+            direccion: "Suljaa', Xochistlahuaca",
+            lat: 16.7921,
+            lng: -98.2408
+        }
+    ];
+
+    /* Icono distinto al de los negocios, para diferenciarlos
+       visualmente en el mismo mapa */
+
+    const iconoTurismo = L.icon({
+        iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        shadowSize: [41, 41],
+        className: "marker-turismo"
+    });
+
+    const marcadoresTurismo = {};
+
+    sitiosTuristicos.forEach(sitio => {
+
+        const marker = L.marker([sitio.lat, sitio.lng], { icon: iconoTurismo }).addTo(map);
+
+        marker.bindPopup(`
+            <span class="popup-tag">${sitio.tipo}</span>
+            <h4 class="popup-title">${sitio.nombre}</h4>
+            <p>${sitio.direccion}</p>
+            <a class="popup-link" href="turismo.html">Ver en Turismo →</a>
+        `);
+
+        marcadoresTurismo[sitio.id] = marker;
+
+    });
+
+    /* Si llegamos desde turismo.html con ?turismo=id,
+       centrar y abrir ese marcador automáticamente */
+
+    const idTurismo = parametros.get("turismo");
+
+    if(idTurismo && marcadoresTurismo[idTurismo]){
+
+        const sitioActivo = sitiosTuristicos.find(s => s.id === idTurismo);
+
+        map.setView([sitioActivo.lat, sitioActivo.lng], 17);
+        marcadoresTurismo[idTurismo].openPopup();
+
+    }
+
+    /* ---------------------------------------------------
        LOCALIDADES DEL MUNICIPIO (cajas con mapa miniatura
        + modal con mapa ampliado y negocios propios)
        --------------------------------------------------- */
@@ -397,7 +515,7 @@ if(mapDiv){
                     lng: -98.2206
                 },
                 {
-                    nombre: "Comedor Economico",
+                    nombre: "Comedor Lupita",
                     categoria: "Comida y bebida",
                     direccion: "Camino principal, Arroyo Guacamaya",
                     lat: 16.8176,
@@ -412,7 +530,7 @@ if(mapDiv){
             lng: -98.2038,
             negocios: [
                 {
-                    nombre: "Abarrotes Pájaro",
+                    nombre: "Abarrotes El Pájaro",
                     categoria: "Servicios",
                     direccion: "Centro de Arroyo Pájaro",
                     lat: 16.8202,
@@ -434,7 +552,7 @@ if(mapDiv){
             lng: -98.149722,
             negocios: [
                 {
-                    nombre: "Cocina Arroyo Grande",
+                    nombre: "Cocina Río Grande",
                     categoria: "Comida y bebida",
                     direccion: "Centro de Arroyo Grande",
                     lat: 16.7942,
@@ -463,7 +581,7 @@ if(mapDiv){
                     lng: -98.2422
                 },
                 {
-                    nombre: "Taqueria El Carboncito",
+                    nombre: "Fonda Doña Rosa",
                     categoria: "Comida y bebida",
                     direccion: "Calle principal, Cozoyoapán",
                     lat: 16.7884,
@@ -474,15 +592,15 @@ if(mapDiv){
         {
             id: "guadalupe-victoria",
             nombre: "Guadalupe Victoria",
-            lat: 16.75419915704101,
-            lng: -98.18075074166201,
+            lat: 16.8401,
+            lng: -98.1916,
             negocios: [
                 {
                     nombre: "Restaurante Guadalupe",
                     categoria: "Comida y bebida",
                     direccion: "Centro de Guadalupe Victoria",
-                    lat: 16.75419915704101,
-                    lng: -98.18075074166201
+                    lat: 16.8404,
+                    lng: -98.1911
                 },
                 {
                     nombre: "Ferretería Victoria",
@@ -507,7 +625,7 @@ if(mapDiv){
                     lng: -98.2144
                 },
                 {
-                    nombre: "Panadería Flor de Cenpasúchil",
+                    nombre: "Panadería Flor de Lirio",
                     categoria: "Comida y bebida",
                     direccion: "Camino principal, Los Lirios",
                     lat: 16.7389,
