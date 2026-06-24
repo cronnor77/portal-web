@@ -721,6 +721,7 @@ ul li a:hover{
     line-height: 1.6;
     color: var(--gris-texto);
 }
+
 /* ---------- ACORDEÓN CULTURAL (historia) ---------- */
 
 .culture-accordion{
@@ -869,7 +870,6 @@ ul li a:hover{
     height: 160px;
 }
 
-
 /* ===================================
    RESPONSIVE
 =================================== */
@@ -927,6 +927,24 @@ ul li a:hover{
 
     .timeline-item::before{
         left: -29px;
+    }
+
+    .accordion-trigger{
+        font-size: 19px;
+        padding: 16px 18px;
+    }
+
+    .accordion-content{
+        padding: 0 18px;
+    }
+
+    .accordion-gallery{
+        grid-template-columns: 1fr;
+    }
+
+    .accordion-figure img,
+    .accordion-gallery .accordion-figure img{
+        height: 180px;
     }
 }
 /* ===================================

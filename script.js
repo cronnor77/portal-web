@@ -167,6 +167,35 @@ menuBtn.addEventListener("click", () => {
 
 });
 
+/* ACORDEÓN CULTURAL (página Historia) */
+
+const accordionTriggers = document.querySelectorAll(".accordion-trigger");
+
+if(accordionTriggers.length){
+
+    accordionTriggers.forEach(trigger => {
+
+        trigger.addEventListener("click", () => {
+
+            const item = trigger.closest(".accordion-item");
+            const isOpen = item.classList.contains("is-open");
+
+            document.querySelectorAll(".accordion-item.is-open").forEach(openItem => {
+                openItem.classList.remove("is-open");
+                openItem.querySelector(".accordion-trigger").setAttribute("aria-expanded", "false");
+            });
+
+            if(!isOpen){
+                item.classList.add("is-open");
+                trigger.setAttribute("aria-expanded", "true");
+            }
+
+        });
+
+    });
+
+}
+
 /* FILTRO DE CATEGORÍAS (página Negocios) */
 
 const filtroCategoria = document.querySelector(".filter-select");
