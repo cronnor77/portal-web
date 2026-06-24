@@ -721,6 +721,154 @@ ul li a:hover{
     line-height: 1.6;
     color: var(--gris-texto);
 }
+/* ---------- ACORDEÓN CULTURAL (historia) ---------- */
+
+.culture-accordion{
+    margin: 36px 0 50px;
+}
+
+.accordion-item{
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow .25s ease;
+}
+
+.accordion-item.is-open{
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+
+.accordion-trigger{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: #1a1a1a;
+    text-align: left;
+
+    transition: background .2s ease;
+}
+
+.accordion-trigger:hover,
+.accordion-trigger:focus-visible{
+    background: rgba(255,114,0,.06);
+    outline: none;
+}
+
+.accordion-trigger:focus-visible{
+    box-shadow: inset 0 0 0 2px var(--naranja);
+}
+
+.accordion-icon{
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    position: relative;
+}
+
+.accordion-icon::before,
+.accordion-icon::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--naranja);
+    transition: transform .3s ease;
+}
+
+.accordion-icon::before{
+    width: 14px;
+    height: 2px;
+    margin: -1px -7px 0 0;
+}
+
+.accordion-icon::after{
+    width: 2px;
+    height: 14px;
+    margin: -7px -1px 0 0;
+}
+
+.accordion-item.is-open .accordion-icon::after{
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+.accordion-panel{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .35s ease;
+}
+
+.accordion-item.is-open .accordion-panel{
+    grid-template-rows: 1fr;
+}
+
+.accordion-content{
+    overflow: hidden;
+    padding: 0 24px;
+}
+
+.accordion-item.is-open .accordion-content{
+    padding-bottom: 24px;
+}
+
+.accordion-content p{
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    color: var(--gris-texto);
+}
+
+.accordion-content p:last-child{
+    margin-bottom: 0;
+}
+
+.accordion-figure{
+    margin: 20px 0 24px;
+}
+
+.accordion-figure img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.accordion-figure figcaption{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.accordion-gallery{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 20px 0 24px;
+}
+
+.accordion-gallery .accordion-figure{
+    margin: 0;
+}
+
+.accordion-gallery .accordion-figure img{
+    height: 160px;
+}
+
 
 /* ===================================
    RESPONSIVE
