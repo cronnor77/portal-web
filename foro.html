@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro — Suljaa'</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="main main--foro">
+
+        <!-- NAVBAR -->
+
+        <div class="navbar">
+            <button class="menu-toggle">☰</button>
+
+            <div class="icon">
+                <h2 class="logo">Suljaa'</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="historia.html">Historia</a></li>
+                    <li><a href="turismo.html">Turismo</a></li>
+                    <li><a href="negocios.html">Negocios</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="foro.html" class="active-link">Foro</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input
+                    class="srch"
+                    type="search"
+                    placeholder="Buscar">
+
+                <a href="#">
+                    <button class="btn">Buscar</button>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- HERO -->
+
+        <div class="page-hero">
+            <p class="page-eyebrow">Comunidad · Suljaa'</p>
+            <h1>Foro de Suljaa'</h1>
+            <p class="page-subtitle">
+                Un espacio para platicar, preguntar y compartir lo que pasa
+                en la comunidad.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- FORO -->
+
+    <main class="forum">
+
+        <!-- BARRA SUPERIOR: FILTRO + BOTÓN NUEVO TEMA -->
+
+        <div class="forum-toolbar">
+
+            <div class="filter-bar">
+
+                <label for="foro-categoria" class="filter-label">Filtrar por categoría</label>
+
+                <select id="foro-categoria" class="filter-select">
+                    <option value="todos">Todos los temas</option>
+                    <option value="general">General</option>
+                    <option value="negocios">Negocios</option>
+                    <option value="tradiciones">Tradiciones</option>
+                    <option value="eventos">Eventos</option>
+                </select>
+
+            </div>
+
+            <button class="btn forum-new-topic" type="button">+ Nuevo tema</button>
+
+        </div>
+
+        <!-- LISTA DE TEMAS -->
+
+        <div class="forum-list" id="forum-list">
+
+            <!-- TEMA 1 -->
+            <article class="forum-card" data-categoria="eventos">
+                <div class="forum-card-main">
+                    <span class="business-tag forum-tag">Eventos</span>
+                    <h3 class="forum-title">¿Cuándo es la próxima fiesta patronal?</h3>
+                    <p class="forum-preview">
+                        Quisiera saber si ya hay fecha confirmada para la
+                        fiesta de este año, y si va a haber danza tradicional
+                        como el año pasado.
+                    </p>
+                    <div class="forum-meta">
+                        <span class="forum-author">Publicado por <strong>Epifania</strong></span>
+                        <span class="forum-date">Hace 2 días</span>
+                    </div>
+                </div>
+                <div class="forum-card-stats">
+                    <span class="forum-replies">8</span>
+                    <span class="forum-replies-label">respuestas</span>
+                </div>
+            </article>
+
+            <!-- TEMA 2 -->
+            <article class="forum-card" data-categoria="negocios">
+                <div class="forum-card-main">
+                    <span class="business-tag forum-tag">Negocios</span>
+                    <h3 class="forum-title">Recomendaciones de dónde comer en el centro</h3>
+                    <p class="forum-preview">
+                        Voy a visitar Suljaa' la próxima semana, ¿qué
+                        lugares me recomiendan para comer algo típico de
+                        la región?
+                    </p>
+                    <div class="forum-meta">
+                        <span class="forum-author">Publicado por <strong>Ana</strong></span>
+                        <span class="forum-date">Hace 4 días</span>
+                    </div>
+                </div>
+                <div class="forum-card-stats">
+                    <span class="forum-replies">15</span>
+                    <span class="forum-replies-label">respuestas</span>
+                </div>
+            </article>
+
+            <!-- TEMA 3 -->
+            <article class="forum-card" data-categoria="tradiciones">
+                <div class="forum-card-main">
+                    <span class="business-tag forum-tag">Tradiciones</span>
+                    <h3 class="forum-title">Significado de los símbolos en el telar amuzgo</h3>
+                    <p class="forum-preview">
+                        Me encantaría que alguien de la comunidad explique
+                        qué representan los animales y figuras que se ven
+                        en los huipiles tradicionales.
+                    </p>
+                    <div class="forum-meta">
+                        <span class="forum-author">Publicado por <strong>Julls</strong></span>
+                        <span class="forum-date">Hace 1 semana</span>
+                    </div>
+                </div>
+                <div class="forum-card-stats">
+                    <span class="forum-replies">22</span>
+                    <span class="forum-replies-label">respuestas</span>
+                </div>
+            </article>
+
+            <!-- TEMA 4 -->
+            <article class="forum-card" data-categoria="general">
+                <div class="forum-card-main">
+                    <span class="business-tag forum-tag">General</span>
+                    <h3 class="forum-title">¿Cómo llegar a Suljaa' desde Acapulco?</h3>
+                    <p class="forum-preview">
+                        Estoy planeando un viaje y quisiera saber cuál es
+                        la mejor ruta y si hay transporte público directo.
+                    </p>
+                    <div class="forum-meta">
+                        <span class="forum-author">Publicado por <strong>Bleyker</strong></span>
+                        <span class="forum-date">Hace 1 semana</span>
+                    </div>
+                </div>
+                <div class="forum-card-stats">
+                    <span class="forum-replies">6</span>
+                    <span class="forum-replies-label">respuestas</span>
+                </div>
+            </article>
+
+            <!-- TEMA 5 -->
+            <article class="forum-card" data-categoria="eventos">
+                <div class="forum-card-main">
+                    <span class="business-tag forum-tag">Eventos</span>
+                    <h3 class="forum-title">Taller de telar gratuito este sábado</h3>
+                    <p class="forum-preview">
+                        La Casa de la Cultura va a dar un taller abierto
+                        para quien quiera aprender los primeros pasos del
+                        telar de cintura.
+                    </p>
+                    <div class="forum-meta">
+                        <span class="forum-author">Publicado por <strong>Casa de la Cultura</strong></span>
+                        <span class="forum-date">Hace 2 semanas</span>
+                    </div>
+                </div>
+                <div class="forum-card-stats">
+                    <span class="forum-replies">11</span>
+                    <span class="forum-replies-label">respuestas</span>
+                </div>
+            </article>
+
+            <!-- TEMA 6 -->
+            <article class="forum-card" data-categoria="negocios">
+                <div class="forum-card-main">
+                    <span class="business-tag forum-tag">Negocios</span>
+                    <h3 class="forum-title">Busco quién haga envíos de artesanía foránea</h3>
+                    <p class="forum-preview">
+                        Quiero comprar varias piezas de Barro y Tradición
+                        pero no soy de Suljaa', ¿alguien sabe si hacen
+                        envíos a otros estados?
+                    </p>
+                    <div class="forum-meta">
+                        <span class="forum-author">Publicado por <strong>Lucía R.</strong></span>
+                        <span class="forum-date">Hace 3 semanas</span>
+                    </div>
+                </div>
+                <div class="forum-card-stats">
+                    <span class="forum-replies">4</span>
+                    <span class="forum-replies-label">respuestas</span>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- SIN RESULTADOS -->
+
+        <p class="no-results" id="forum-no-results">No hay temas en esta categoría todavía.</p>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -866,12 +866,52 @@ if(mapDiv){
 
     });
 
-    /* Cerrar con la tecla Escape */
+/* Cerrar con la tecla Escape */
 
-    document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
 
-        if(e.key === "Escape" && modal.classList.contains("is-open")){
-            cerrarModal();
+    if(e.key === "Escape" && modal.classList.contains("is-open")){
+        cerrarModal();
+    }
+
+});
+
+}
+
+/* FILTRO DE CATEGORÍAS (página Foro) */
+
+const filtroForo = document.getElementById("foro-categoria");
+
+if(filtroForo){
+
+    const forumCards = document.querySelectorAll(".forum-card");
+    const forumNoResults = document.getElementById("forum-no-results");
+
+    filtroForo.addEventListener("change", () => {
+
+        const categoriaElegida = filtroForo.value;
+
+        let visibles = 0;
+
+        forumCards.forEach(card => {
+
+            const categoriaCard = card.dataset.categoria;
+
+            if(categoriaElegida === "todos" || categoriaCard === categoriaElegida){
+
+                card.classList.remove("is-hidden");
+                visibles++;
+
+            }else{
+
+                card.classList.add("is-hidden");
+
+            }
+
+        });
+
+        if(forumNoResults){
+            forumNoResults.classList.toggle("show", visibles === 0);
         }
 
     });
