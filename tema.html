@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foro — Suljaa'</title>
+    <title>Tema — Foro Suljaa'</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -48,50 +48,51 @@
         <!-- HERO -->
 
         <div class="page-hero">
-            <p class="page-eyebrow">Comunidad · Suljaa'</p>
-            <h1>Foro de Suljaa'</h1>
-            <p class="page-subtitle">
-                Un espacio para platicar, preguntar y compartir lo que pasa
-                en la comunidad.
-            </p>
+            <p class="page-eyebrow"><a href="foro.html" class="back-link">← Volver al foro</a></p>
+            <h1 id="tema-titulo">Cargando tema...</h1>
         </div>
 
     </div>
 
-    <!-- FORO -->
+    <!-- DETALLE DEL TEMA -->
 
     <main class="forum">
 
-        <!-- BARRA SUPERIOR: FILTRO + BOTÓN NUEVO TEMA -->
+        <div class="topic-detail" id="topic-detail">
+            <!-- Encabezado del tema: generado dinámicamente desde tema-firebase.js -->
+        </div>
 
-        <div class="forum-toolbar">
+        <!-- FORMULARIO DE COMENTARIO -->
 
-            <div class="filter-bar">
+        <div class="comment-form-wrapper" id="comment-form-wrapper">
 
-                <label for="foro-categoria" class="filter-label">Filtrar por categoría</label>
+            <h3 class="comments-title">Comentarios</h3>
 
-                <select id="foro-categoria" class="filter-select">
-                    <option value="todos">Todos los temas</option>
-                    <option value="general">General</option>
-                    <option value="negocios">Negocios</option>
-                    <option value="tradiciones">Tradiciones</option>
-                    <option value="eventos">Eventos</option>
-                </select>
-
+            <div class="forum-auth" id="comment-auth">
+                <!-- Login/usuario generado dinámicamente -->
             </div>
 
-            <button class="btn forum-new-topic" type="button">+ Nuevo tema</button>
+            <form id="comment-form" class="topic-form">
+
+                <textarea
+                    id="comment-text"
+                    class="topic-textarea"
+                    placeholder="Escribe un comentario..."
+                    maxlength="500"></textarea>
+
+                <button type="submit" class="btn topic-submit">Comentar</button>
+
+            </form>
 
         </div>
 
-        <!-- LISTA DE TEMAS -->
+        <!-- LISTA DE COMENTARIOS -->
 
-        <div class="forum-list" id="forum-list">
-            <!-- Los temas se generan dinámicamente desde foro-firebase.js -->
+        <div class="comments-list" id="comments-list">
+            <!-- Comentarios generados dinámicamente -->
         </div>
-        <!-- SIN RESULTADOS -->
 
-        <p class="no-results" id="forum-no-results">No hay temas en esta categoría todavía.</p>
+        <p class="no-results show" id="comments-empty">Todavía no hay comentarios. ¡Sé el primero!</p>
 
     </main>
 
@@ -99,8 +100,8 @@
 
     <script src="script.js"></script>
 
-    <!-- FIREBASE: login + temas guardados de verdad -->
-    <script type="module" src="foro-firebase.js"></script>
+    <!-- FIREBASE: detalle del tema + comentarios -->
+    <script type="module" src="tema-firebase.js"></script>
 
 </body>
 </html>

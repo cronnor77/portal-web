@@ -2528,3 +2528,2853 @@ ul li a:hover{
         align-self: flex-start;
     }
 }
+
+/* ===================================
+   FORO — FIREBASE (login + modal nuevo tema)
+=================================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main{
+    width: 100%;
+    height: 100vh;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.5) 50%,
+        rgba(0,0,0,0.5) 50%
+    ),
+    url("img/portada.webp");
+
+    background-position: center;
+    background-size: cover;
+}
+
+.navbar{
+    width: 1200px;
+    height: 75px;
+    margin: auto;
+}
+
+.navbar{
+    overflow:visible;
+}
+
+.icon{
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo{
+    color: #ff7200;
+    font-size: 50px;
+    font-family: Arial;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.menu{
+    width: 460px;
+    float: left;
+    height: 70px;
+}
+
+ul{
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li{
+    list-style: none;
+    margin-left: 50px;
+    margin-top: 27px;
+    font-size: 18px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover{
+    color: #ff7200;
+}
+
+.search{
+    width: 330px;
+    float: left;
+    margin-left: 210px;
+}
+
+.srch{
+    font-family: Arial;
+    width: 200px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #ff7200;
+    border-right: none;
+    margin-top: 13px;
+    color: #fff;
+    font-size: 16px;
+    float: left;
+    padding-left: 10px;
+
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btn{
+    width: 100px;
+    height: 40px;
+    background: #ff7200;
+    border: 1px solid #ff7200;
+    margin-top: 13px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.btn:focus,
+.srch:focus{
+    outline: none;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+.content{
+    width: min(1200px, 90%);
+    margin: auto;
+
+    padding-top: 100px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 60px;
+
+    color: white;
+}
+.content-text{
+    width: 700px;
+}
+
+.content h1{
+    font-family: Georgia, serif;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.content span{
+    color: #ff7200;
+    font-size: 55px;
+}
+
+.content .par{
+    width: 700px;
+    font-family: Arial;
+    font-size: 20px;
+    line-height: 35px;
+    letter-spacing: 1px;
+}
+.mini-slider{
+
+    position: relative;
+
+    width: 320px;
+    height: 450px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
+
+    flex-shrink: 0;
+
+    animation: float 5s ease-in-out infinite;
+}
+
+.slide{
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    transform: scale(1.15);
+
+    transition:
+        opacity .8s ease,
+        transform 6s ease;
+}
+
+.slide.active{
+    opacity: 1;
+    transform: scale(1);
+}
+
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes float{
+
+    0%{
+        transform: translateY(0);
+    }
+
+    50%{
+        transform: translateY(-8px);
+    }
+
+    100%{
+        transform: translateY(0);
+    }
+
+}
+.slider-dots{
+
+    position: absolute;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 10px;
+
+    z-index: 10;
+}
+
+.dot{
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.4);
+
+    transition: .3s;
+}
+
+.active-dot{
+    background: #ff7200;
+    transform: scale(1.3);
+}
+.slide-info{
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 20px;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(0,0,0,.85)
+    );
+
+    color: white;
+}
+
+.slide-info h3{
+
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.slide-info p{
+
+    font-size: 14px;
+    line-height: 1.4;
+}
+/* ===================================
+   MENU HAMBURGUESA
+=================================== */
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width:768px){
+
+    .main{
+        height:auto;
+        min-height:100vh;
+    }
+
+    .navbar{
+        width:100%;
+        padding:20px;
+        position:relative;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .logo{
+        font-size:36px;
+        padding:0;
+        text-align:center;
+        letter-spacing:1px;
+    }
+
+    .menu-toggle{
+        display:block;
+        position:absolute;
+        left:20px;
+        top:20px;
+        z-index:1001;
+    }
+
+    .menu{
+    display:none;
+    width:100%;
+    float:none;
+    height:auto;
+}
+
+    .menu.active{
+
+    display:block;
+
+    position:absolute;
+
+    top:70px;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    width:95%;
+
+    padding:10px 15px;
+
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:14px;
+
+    z-index:999;
+
+    animation:menuDrop .3s ease;
+}
+
+    .menu.active ul{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:12px;
+
+    width:100%;
+}
+
+    .menu.active li{
+    margin:0 !important;
+}
+
+    .menu.active a{
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+    .menu.active a:hover{
+        color:#ff7200;
+    }
+
+    .search{
+        display:none;
+    }
+
+    .content{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        padding:30px 20px 50px;
+        gap:30px;
+    }
+
+    .content-text{
+        width:100%;
+    }
+
+    .content h1{
+        font-size:40px;
+        line-height:1.1;
+        margin-bottom:15px;
+    }
+
+    .content span{
+        font-size:40px;
+    }
+
+    .content .par{
+        width:100%;
+        font-size:18px;
+        line-height:1.7;
+    }
+
+    .mini-slider{
+        width:90%;
+        max-width:340px;
+        height:460px;
+        margin-top:0;
+        border-radius:22px;
+        overflow:hidden;
+        box-shadow:0 20px 60px rgba(0,0,0,.45);
+    }
+
+    .slide-info{
+        text-align:center;
+        padding:22px;
+        background:linear-gradient(
+            transparent,
+            rgba(0,0,0,.92)
+        );
+    }
+
+    .slide-info h3{
+        font-size:24px;
+        margin-bottom:8px;
+        font-family:Georgia, serif;
+    }
+
+    .slide-info p{
+        font-size:15px;
+        line-height:1.5;
+        opacity:.9;
+    }
+
+    .dot{
+        width:8px;
+        height:8px;
+    }
+
+    .active-dot{
+        transform:scale(1.4);
+    }
+}
+
+/* ===================================
+   ANIMACIONES
+=================================== */
+
+@keyframes menuDrop{
+
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===================================
+   HISTORIA — ESTILOS DE ARTÍCULO
+   (se carga después de style.css)
+=================================== */
+
+:root{
+    --naranja: #ff7200;
+    --negro: #0d0d0d;
+    --gris-texto: #2b2b2b;
+    --crema: #faf7f2;
+}
+
+/* El hero de historia es más bajo que el del index,
+   solo lo necesario para navbar + título de artículo */
+
+.main--historia{
+    height: auto;
+    min-height: 60vh;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/historia-hero.webp");
+
+    background-position: center;
+    background-size: cover;
+
+    padding-bottom: 80px;
+}
+
+.active-link{
+    color: var(--naranja) !important;
+}
+
+/* ---------- HERO DEL ARTÍCULO ---------- */
+
+.article-hero{
+    width: min(800px, 90%);
+    margin: 90px auto 0;
+
+    color: #fff;
+    text-align: left;
+}
+
+.article-eyebrow{
+    font-family: Arial;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 18px;
+}
+
+.article-hero h1{
+    font-family: Georgia, serif;
+    font-size: 56px;
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.article-subtitle{
+    font-family: Arial;
+    font-size: 19px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.85);
+    max-width: 650px;
+}
+
+/* ---------- CUERPO DEL ARTÍCULO ---------- */
+
+.article{
+    background: var(--crema);
+    padding-top: 60px;
+    padding-bottom: 100px;
+}
+
+.article-figure{
+    margin: 0 auto 50px;
+}
+
+.article-figure--full{
+    width: min(1000px, 92%);
+}
+
+.article-figure--full img{
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+.article-figure--inline{
+    width: min(720px, 90%);
+}
+
+.article-figure--inline img{
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.article-figure figcaption{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.article-body{
+    width: min(720px, 90%);
+    margin: 0 auto 70px;
+
+    color: var(--gris-texto);
+    font-family: Arial;
+}
+
+.article-lead{
+    font-size: 22px;
+    line-height: 1.6;
+    font-family: Georgia, serif;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+}
+
+.article-body h2{
+    font-family: Georgia, serif;
+    font-size: 32px;
+    color: #1a1a1a;
+    margin-top: 50px;
+    margin-bottom: 18px;
+
+    border-left: 4px solid var(--naranja);
+    padding-left: 16px;
+}
+
+.article-body p{
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+    letter-spacing: .2px;
+}
+
+.article-body h3{
+    font-family: Georgia, serif;
+    font-size: 24px;
+    color: #1a1a1a;
+    margin-top: 36px;
+    margin-bottom: 14px;
+}
+
+.article-list{
+    margin: 0 0 28px 1.4em;
+    padding: 0;
+}
+
+.article-list li{
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+    letter-spacing: .2px;
+    color: var(--gris-texto);
+}
+
+.article-list li strong{
+    color: #1a1a1a;
+}
+
+.article-quote{
+    width: 100%;
+    margin: 40px 0;
+    padding: 30px 35px;
+
+    background: #fff;
+    border-left: 4px solid var(--naranja);
+    border-radius: 0 10px 10px 0;
+
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.article-quote cite{
+    display: block;
+    margin-top: 14px;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    color: #8a8a8a;
+}
+
+/* ---------- LÍNEA DE TIEMPO ---------- */
+
+.timeline{
+    width: min(800px, 90%);
+    margin: 0 auto;
+    padding: 50px 0 20px;
+}
+
+.timeline-title{
+    font-family: Georgia, serif;
+    font-size: 32px;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.timeline-track{
+    position: relative;
+    padding-left: 30px;
+
+    border-left: 2px solid rgba(255,114,0,.3);
+}
+
+.timeline-item{
+    position: relative;
+    margin-bottom: 42px;
+}
+
+.timeline-item::before{
+    content: "";
+
+    position: absolute;
+    left: -38px;
+    top: 4px;
+
+    width: 14px;
+    height: 14px;
+
+    background: var(--naranja);
+    border-radius: 50%;
+    border: 3px solid var(--crema);
+}
+
+.timeline-year{
+    display: inline-block;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--naranja);
+    margin-bottom: 6px;
+}
+
+.timeline-content h3{
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.timeline-content p{
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gris-texto);
+}
+
+/* ---------- ACORDEÓN CULTURAL (historia) ---------- */
+
+.culture-accordion{
+    margin: 36px 0 50px;
+}
+
+.accordion-item{
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow .25s ease;
+}
+
+.accordion-item.is-open{
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+
+.accordion-trigger{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: #1a1a1a;
+    text-align: left;
+
+    transition: background .2s ease;
+}
+
+.accordion-trigger:hover,
+.accordion-trigger:focus-visible{
+    background: rgba(255,114,0,.06);
+    outline: none;
+}
+
+.accordion-trigger:focus-visible{
+    box-shadow: inset 0 0 0 2px var(--naranja);
+}
+
+.accordion-icon{
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    position: relative;
+}
+
+.accordion-icon::before,
+.accordion-icon::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--naranja);
+    transition: transform .3s ease;
+}
+
+.accordion-icon::before{
+    width: 14px;
+    height: 2px;
+    margin: -1px -7px 0 0;
+}
+
+.accordion-icon::after{
+    width: 2px;
+    height: 14px;
+    margin: -7px -1px 0 0;
+}
+
+.accordion-item.is-open .accordion-icon::after{
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+.accordion-panel{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .35s ease;
+}
+
+.accordion-item.is-open .accordion-panel{
+    grid-template-rows: 1fr;
+}
+
+.accordion-content{
+    overflow: hidden;
+    padding: 0 24px;
+}
+
+.accordion-item.is-open .accordion-content{
+    padding-bottom: 24px;
+}
+
+.accordion-content p{
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    color: var(--gris-texto);
+}
+
+.accordion-content p:last-child{
+    margin-bottom: 0;
+}
+
+.accordion-figure{
+    margin: 20px 0 24px;
+}
+
+.accordion-figure img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.accordion-figure figcaption{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.accordion-gallery{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 20px 0 24px;
+}
+
+.accordion-gallery .accordion-figure{
+    margin: 0;
+}
+
+.accordion-gallery .accordion-figure img{
+    height: 160px;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width:768px){
+
+    .article-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .article-hero h1{
+        font-size: 38px;
+    }
+
+    .article-subtitle{
+        font-size: 17px;
+        max-width: 100%;
+    }
+
+    .article-figure--full img{
+        height: 260px;
+        border-radius: 10px;
+    }
+
+    .article-figure--inline img{
+        height: 220px;
+    }
+
+    .article-lead{
+        font-size: 19px;
+    }
+
+    .article-body h2{
+        font-size: 26px;
+    }
+
+    .article-body p{
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .article-body h3{
+        font-size: 21px;
+    }
+
+    .article-list li{
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .article-quote{
+        font-size: 18px;
+        padding: 24px 22px;
+    }
+
+    .timeline-title{
+        font-size: 26px;
+    }
+
+    .timeline-track{
+        padding-left: 22px;
+    }
+
+    .timeline-item::before{
+        left: -29px;
+    }
+
+    .accordion-trigger{
+        font-size: 19px;
+        padding: 16px 18px;
+    }
+
+    .accordion-content{
+        padding: 0 18px;
+    }
+
+    .accordion-gallery{
+        grid-template-columns: 1fr;
+    }
+
+    .accordion-figure img,
+    .accordion-gallery .accordion-figure img{
+        height: 180px;
+    }
+}
+/* ===================================
+   NEGOCIOS — DIRECTORIO
+   (se carga después de style.css e historia)
+=================================== */
+ 
+/* Hero corto, mismo patrón que historia pero genérico
+   para reutilizarse en otras páginas internas si se quiere */
+ 
+.page-hero{
+    width: min(800px, 90%);
+    margin: 90px auto 0;
+ 
+    color: #fff;
+    text-align: left;
+}
+ 
+.main--negocios{
+    height: auto;
+    min-height: 55vh;
+ 
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/negocios-hero.webp");
+ 
+    background-position: center;
+    background-size: cover;
+ 
+    padding-bottom: 70px;
+}
+ 
+.page-eyebrow{
+    font-family: Arial;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 18px;
+}
+ 
+.page-hero h1{
+    font-family: Georgia, serif;
+    font-size: 52px;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+ 
+.page-subtitle{
+    font-family: Arial;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.85);
+    max-width: 600px;
+}
+ 
+/* ---------- DIRECTORIO ---------- */
+ 
+.directory{
+    background: var(--crema);
+    padding: 60px 0 100px;
+}
+ 
+/* ---------- FILTRO ---------- */
+ 
+.filter-bar{
+    width: min(1100px, 90%);
+    margin: 0 auto 45px;
+ 
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+ 
+.filter-label{
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+ 
+.filter-select{
+    font-family: Arial;
+    font-size: 15px;
+    color: #1a1a1a;
+ 
+    padding: 10px 18px;
+ 
+    border: 1.5px solid var(--naranja);
+    border-radius: 30px;
+ 
+    background: #fff;
+    cursor: pointer;
+ 
+    min-width: 220px;
+ 
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ff7200' stroke-width='3'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+ 
+.filter-select:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,114,0,.2);
+}
+ 
+/* ---------- GRID ---------- */
+ 
+.business-grid{
+    width: min(1100px, 90%);
+    margin: 0 auto;
+ 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+ 
+.business-card{
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+ 
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+ 
+    display: flex;
+    flex-direction: column;
+ 
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+ 
+.business-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.14);
+}
+ 
+.business-card.is-hidden{
+    display: none;
+}
+ 
+.business-image{
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+ 
+.business-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+ 
+.business-tag{
+    position: absolute;
+    top: 14px;
+    left: 14px;
+ 
+    background: var(--naranja);
+    color: #fff;
+ 
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+ 
+    padding: 6px 14px;
+    border-radius: 30px;
+}
+ 
+.business-info{
+    padding: 22px 24px 26px;
+ 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+ 
+.business-info h3{
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+ 
+.business-desc{
+    font-family: Arial;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gris-texto);
+ 
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+ 
+.business-location{
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+ 
+.business-address{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+}
+ 
+.map-link{
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--naranja);
+    text-decoration: none;
+ 
+    transition: .25s;
+}
+ 
+.map-link:hover{
+    color: #d65f00;
+}
+ 
+/* ---------- SIN RESULTADOS ---------- */
+ 
+.no-results{
+    display: none;
+ 
+    width: min(1100px, 90%);
+    margin: 40px auto 0;
+ 
+    text-align: center;
+    font-family: Arial;
+    font-size: 16px;
+    color: #8a8a8a;
+}
+ 
+.no-results.show{
+    display: block;
+}
+ 
+/* ===================================
+   RESPONSIVE
+=================================== */
+ 
+@media (max-width:1024px){
+ 
+    .business-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+ 
+@media (max-width:768px){
+ 
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+ 
+    .page-hero h1{
+        font-size: 36px;
+    }
+ 
+    .page-subtitle{
+        font-size: 16px;
+        max-width: 100%;
+    }
+ 
+    .filter-bar{
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+ 
+    .filter-select{
+        width: 100%;
+    }
+ 
+    .business-grid{
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+ 
+    .business-image{
+        height: 190px;
+    }
+}
+
+
+ /* ===================================
+   MAPA — ESTILOS
+   (se carga después de style.css, historia y negocios)
+=================================== */
+
+.main--mapa{
+    height: auto;
+    min-height: 45vh;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/mapa-hero.webp");
+
+    background-position: center;
+    background-size: cover;
+
+    padding-bottom: 60px;
+}
+
+/* ---------- LAYOUT GENERAL ---------- */
+
+.map-page{
+    background: var(--crema);
+    padding: 50px 0 90px;
+}
+
+.section-title{
+    width: min(1200px, 94%);
+    margin: 0 auto 10px;
+
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+
+    border-left: 4px solid var(--naranja);
+    padding-left: 14px;
+}
+
+.section-subtitle{
+    width: min(1200px, 94%);
+    margin: 0 auto 30px;
+
+    font-family: Arial;
+    font-size: 15px;
+    color: var(--gris-texto);
+    padding-left: 18px;
+}
+
+.map-main-section{
+    margin-bottom: 70px;
+}
+
+/* ---------- MAPA PRINCIPAL ---------- */
+
+.map-layout{
+    width: min(1200px, 94%);
+    margin: 20px auto 0;
+
+    display: flex;
+    gap: 28px;
+
+    align-items: flex-start;
+}
+
+.map-sidebar{
+    width: 320px;
+    flex-shrink: 0;
+
+    background: #fff;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    padding: 24px;
+
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+.sidebar-title{
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin-bottom: 18px;
+}
+
+.sidebar-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-item{
+    list-style: none;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+    border: 1px solid #eee;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.sidebar-item:hover{
+    border-color: var(--naranja);
+    background: #fff9f4;
+}
+
+.sidebar-item.is-active{
+    border-color: var(--naranja);
+    background: #fff3e8;
+}
+
+.sidebar-item h4{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.sidebar-item span{
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--naranja);
+}
+
+.map-container{
+    flex-grow: 1;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+#map{
+    width: 100%;
+    height: 560px;
+}
+
+/* ---------- LOCALIDADES: GRID DE CAJAS ---------- */
+
+.locality-grid{
+    width: min(1200px, 94%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.locality-card{
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    cursor: pointer;
+
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.locality-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.14);
+}
+
+.locality-thumb{
+    width: 100%;
+    height: 160px;
+
+    position: relative;
+
+    /* El mapa miniatura de Leaflet vive aquí */
+    overflow: hidden;
+}
+
+/* Evita que el mini-mapa capture scroll/clicks individuales;
+   el clic en toda la tarjeta abre el modal */
+.locality-thumb .leaflet-container{
+    pointer-events: none;
+}
+
+.locality-thumb-overlay{
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.45),
+        rgba(0,0,0,0) 60%
+    );
+}
+
+.locality-info{
+    padding: 18px 20px 22px;
+}
+
+.locality-info h3{
+    font-family: Georgia, serif;
+    font-size: 19px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.locality-info p{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+}
+
+.locality-expand{
+    display: inline-block;
+    margin-top: 10px;
+
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja);
+}
+
+/* ---------- MODAL ---------- */
+
+.locality-modal{
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(0,0,0,.6);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.locality-modal.is-open{
+    display: flex;
+}
+
+.locality-modal-content{
+    background: #fff;
+    border-radius: 18px;
+
+    width: min(900px, 100%);
+    max-height: 90vh;
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow-y: auto;
+
+    animation: modalPop .25s ease;
+}
+
+@keyframes modalPop{
+
+    from{
+        opacity: 0;
+        transform: scale(.96);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.modal-close{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f4f4f4;
+    color: #1a1a1a;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.modal-close:hover{
+    background: var(--naranja);
+    color: #fff;
+}
+
+.modal-title{
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    padding-right: 40px;
+}
+
+.modal-subtitle{
+    font-family: Arial;
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-bottom: 20px;
+}
+
+.modal-map-container{
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+#modal-map{
+    width: 100%;
+    height: 420px;
+}
+
+/* Popups de Leaflet con la tipografía del sitio */
+
+.leaflet-popup-content-wrapper{
+    border-radius: 12px;
+}
+
+.leaflet-popup-content{
+    font-family: Arial;
+    margin: 14px 16px;
+}
+
+.popup-title{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.popup-tag{
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--naranja);
+    margin-bottom: 8px;
+}
+
+.popup-link{
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja);
+    text-decoration: none;
+}
+
+.popup-link:hover{
+    color: #d65f00;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width:1024px){
+
+    .locality-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:768px){
+
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .page-hero h1{
+        font-size: 34px;
+    }
+
+    .section-title{
+        font-size: 22px;
+    }
+
+    .map-layout{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .map-sidebar{
+        width: 100%;
+        max-height: 240px;
+    }
+
+    #map{
+        height: 360px;
+    }
+
+    .locality-grid{
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .locality-thumb{
+        height: 150px;
+    }
+
+    .locality-modal-content{
+        padding: 22px;
+    }
+
+    .modal-title{
+        font-size: 22px;
+    }
+
+    #modal-map{
+        height: 300px;
+    }
+}
+/* ===================================
+   TURISMO — ESTILOS
+   (se carga después de style.css, historia, negocios y mapa;
+   reutiliza .business-grid / .business-card de negocios.css
+   para el grid de sitios turísticos) */
+ 
+.main--turismo{
+    height: auto;
+    min-height: 50vh;
+ 
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/turismo-hero.webp");
+ 
+    background-position: center;
+    background-size: cover;
+ 
+    padding-bottom: 60px;
+}
+ 
+.tourism{
+    background: var(--crema);
+    padding: 50px 0 90px;
+}
+ 
+/* ---------- SECCIÓN DEL ZÓCALO (sitio principal) ---------- */
+ 
+.main-spot-section{
+    margin-bottom: 70px;
+}
+ 
+.main-spot-card{
+    width: min(1100px, 90%);
+    margin: 20px auto 0;
+ 
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+ 
+    box-shadow: 0 10px 28px rgba(0,0,0,.1);
+ 
+    display: flex;
+}
+ 
+.main-spot-image{
+    width: 45%;
+    flex-shrink: 0;
+}
+ 
+.main-spot-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 320px;
+}
+ 
+.main-spot-info{
+    padding: 36px 38px;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ 
+.main-spot-info h3{
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+}
+ 
+.main-spot-info p{
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gris-texto);
+    margin-bottom: 24px;
+}
+ 
+.main-spot-location{
+    border-top: 1px solid #eee;
+    padding-top: 18px;
+ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+ 
+/* ---------- TÍTULOS DE SECCIÓN ---------- */
+ 
+.spots-section .section-title{
+    margin-bottom: 30px;
+}
+ 
+/* ===================================
+   RESPONSIVE
+=================================== */
+ 
+@media (max-width:768px){
+ 
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+ 
+    .page-hero h1{
+        font-size: 34px;
+    }
+ 
+    .main-spot-card{
+        flex-direction: column;
+    }
+ 
+    .main-spot-image{
+        width: 100%;
+    }
+ 
+    .main-spot-image img{
+        min-height: 220px;
+    }
+ 
+    .main-spot-info{
+        padding: 26px 24px 30px;
+        text-align: left;
+    }
+ 
+    .main-spot-info h3{
+        font-size: 24px;
+    }
+}
+ 
+/* ===================================
+   MAPA — ESTILOS
+   (se carga después de style.css, historia y negocios)
+=================================== */
+
+.main--mapa{
+    height: auto;
+    min-height: 45vh;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/mapa-hero.jpg");
+
+    background-position: center;
+    background-size: cover;
+
+    padding-bottom: 60px;
+}
+
+/* ---------- LAYOUT GENERAL ---------- */
+
+.map-page{
+    background: var(--crema);
+    padding: 50px 0 90px;
+}
+
+.section-title{
+    width: min(1200px, 94%);
+    margin: 0 auto 10px;
+
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+
+    border-left: 4px solid var(--naranja);
+    padding-left: 14px;
+}
+
+.section-subtitle{
+    width: min(1200px, 94%);
+    margin: 0 auto 30px;
+
+    font-family: Arial;
+    font-size: 15px;
+    color: var(--gris-texto);
+    padding-left: 18px;
+}
+
+.map-main-section{
+    margin-bottom: 70px;
+}
+
+/* ---------- MAPA PRINCIPAL ---------- */
+
+.map-layout{
+    width: min(1200px, 94%);
+    margin: 20px auto 0;
+
+    display: flex;
+    gap: 28px;
+
+    align-items: flex-start;
+}
+
+.map-sidebar{
+    width: 320px;
+    flex-shrink: 0;
+
+    background: #fff;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    padding: 24px;
+
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+.sidebar-tabs{
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.sidebar-tab{
+    flex: 1;
+
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+
+    padding: 10px 0;
+
+    border: 1.5px solid var(--naranja);
+    border-radius: 30px;
+
+    background: #fff;
+    color: var(--naranja);
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.sidebar-tab:hover{
+    background: #fff3e8;
+}
+
+.sidebar-tab.is-active{
+    background: var(--naranja);
+    color: #fff;
+}
+
+.sidebar-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-item{
+    list-style: none;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+    border: 1px solid #eee;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.sidebar-item:hover{
+    border-color: var(--naranja);
+    background: #fff9f4;
+}
+
+.sidebar-item.is-active{
+    border-color: var(--naranja);
+    background: #fff3e8;
+}
+
+.sidebar-item h4{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.sidebar-item span{
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--naranja);
+}
+
+.map-container{
+    flex-grow: 1;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+#map{
+    width: 100%;
+    height: 560px;
+}
+
+/* ---------- LOCALIDADES: GRID DE CAJAS ---------- */
+
+.locality-grid{
+    width: min(1200px, 94%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.locality-card{
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    cursor: pointer;
+
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.locality-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.14);
+}
+
+.locality-thumb{
+    width: 100%;
+    height: 160px;
+
+    position: relative;
+
+    /* El mapa miniatura de Leaflet vive aquí */
+    overflow: hidden;
+}
+
+/* Evita que el mini-mapa capture scroll/clicks individuales;
+   el clic en toda la tarjeta abre el modal */
+.locality-thumb .leaflet-container{
+    pointer-events: none;
+}
+
+.locality-thumb-overlay{
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.45),
+        rgba(0,0,0,0) 60%
+    );
+}
+
+.locality-info{
+    padding: 18px 20px 22px;
+}
+
+.locality-info h3{
+    font-family: Georgia, serif;
+    font-size: 19px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.locality-info p{
+    font-family: Arial;
+    font-size: 13px;
+    color: #8a8a8a;
+}
+
+.locality-expand{
+    display: inline-block;
+    margin-top: 10px;
+
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja);
+}
+
+/* ---------- MODAL ---------- */
+
+.locality-modal{
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(0,0,0,.6);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.locality-modal.is-open{
+    display: flex;
+}
+
+.locality-modal-content{
+    background: #fff;
+    border-radius: 18px;
+
+    width: min(900px, 100%);
+    max-height: 90vh;
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow-y: auto;
+
+    animation: modalPop .25s ease;
+}
+
+@keyframes modalPop{
+
+    from{
+        opacity: 0;
+        transform: scale(.96);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.modal-close{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f4f4f4;
+    color: #1a1a1a;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.modal-close:hover{
+    background: var(--naranja);
+    color: #fff;
+}
+
+.modal-title{
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    padding-right: 40px;
+}
+
+.modal-subtitle{
+    font-family: Arial;
+    font-size: 14px;
+    color: #8a8a8a;
+    margin-bottom: 20px;
+}
+
+.modal-map-container{
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+#modal-map{
+    width: 100%;
+    height: 420px;
+}
+
+/* Popups de Leaflet con la tipografía del sitio */
+
+.leaflet-popup-content-wrapper{
+    border-radius: 12px;
+}
+
+.leaflet-popup-content{
+    font-family: Arial;
+    margin: 14px 16px;
+}
+
+.popup-title{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.popup-tag{
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--naranja);
+    margin-bottom: 8px;
+}
+
+.popup-link{
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja);
+    text-decoration: none;
+}
+
+.popup-link:hover{
+    color: #d65f00;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width:1024px){
+
+    .locality-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:768px){
+
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .page-hero h1{
+        font-size: 34px;
+    }
+
+    .section-title{
+        font-size: 22px;
+    }
+
+    .map-layout{
+        flex-direction: column;
+    }
+
+    /* Mapa primero, panel de negocios/turismo después,
+       solo en móvil (en desktop el orden visual no cambia) */
+
+    .map-container{
+        order: 1;
+        flex-grow: 0;
+        width: 100%;
+    }
+
+    .map-sidebar{
+        order: 2;
+        width: 100%;
+        max-height: 240px;
+    }
+
+    #map{
+        width: 100%;
+        height: 360px;
+    }
+
+    .locality-grid{
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .locality-thumb{
+        height: 150px;
+    }
+
+    .locality-modal-content{
+        padding: 22px;
+    }
+
+    .modal-title{
+        font-size: 22px;
+    }
+
+    #modal-map{
+        height: 300px;
+    }
+}
+/* ===================================
+   FORO — ESTILOS
+   (se carga después de style.css, historia, negocios, mapa y turismo;
+   reutiliza .filter-bar/.filter-select de negocios.css,
+   .business-tag de negocios.css, y .no-results de negocios.css) */
+
+   .main--foro{
+    height: auto;
+    min-height: 45vh;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.65) 100%
+    ),
+    url("img/foro-hero.webp");
+
+    background-position: center;
+    background-size: cover;
+
+    padding-bottom: 60px;
+}
+
+.forum{
+    background: var(--crema);
+    padding: 50px 0 90px;
+}
+
+/* ---------- BARRA SUPERIOR ---------- */
+
+.forum-toolbar{
+    width: min(900px, 90%);
+    margin: 0 auto 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.forum-toolbar .filter-bar{
+    width: auto;
+    margin: 0;
+}
+
+.forum-new-topic{
+    width: auto;
+    height: auto;
+
+    padding: 12px 24px;
+
+    border-radius: 30px;
+
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* ---------- LISTA DE TEMAS ---------- */
+
+.forum-list{
+    width: min(900px, 90%);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.forum-card{
+    background: #fff;
+    border-radius: 14px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+
+    padding: 22px 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    cursor: pointer;
+
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.forum-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.1);
+}
+
+.forum-card.is-hidden{
+    display: none;
+}
+
+.forum-card-main{
+    flex-grow: 1;
+}
+
+.forum-tag{
+    position: static;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.forum-title{
+    font-family: Georgia, serif;
+    font-size: 19px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.forum-preview{
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gris-texto);
+    margin-bottom: 12px;
+}
+
+.forum-meta{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    font-family: Arial;
+    font-size: 12px;
+    color: #8a8a8a;
+}
+
+.forum-author strong{
+    color: #1a1a1a;
+}
+
+.forum-card-stats{
+    flex-shrink: 0;
+
+    text-align: center;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+    background: #fff3e8;
+}
+
+.forum-replies{
+    display: block;
+
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--naranja);
+}
+
+.forum-replies-label{
+    font-family: Arial;
+    font-size: 11px;
+    color: #8a8a8a;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width:768px){
+
+    .page-hero{
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .page-hero h1{
+        font-size: 34px;
+    }
+
+    .forum-toolbar{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .forum-toolbar .filter-bar{
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .forum-new-topic{
+        width: 100%;
+    }
+
+    .forum-card{
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+    }
+
+    .forum-card-stats{
+        align-self: flex-start;
+    }
+}
+
+/* ===================================
+   FORO — FIREBASE (login + modal nuevo tema)
+=================================== */
+
+.forum-auth{
+    width: min(900px, 90%);
+    margin: 0 auto 24px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.forum-login-btn{
+    width: auto;
+    height: auto;
+
+    padding: 10px 22px;
+
+    border-radius: 30px;
+
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.forum-user-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #fff;
+    border-radius: 30px;
+    padding: 6px 16px 6px 6px;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+
+.forum-user-photo{
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.forum-user-name{
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.forum-logout-btn{
+    border: none;
+    background: none;
+
+    font-family: Arial;
+    font-size: 13px;
+    color: var(--naranja);
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.forum-logout-btn:hover{
+    text-decoration: underline;
+}
+
+/* ---------- MODAL: NUEVO TEMA ---------- */
+
+.topic-modal{
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(0,0,0,.6);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.topic-modal.is-open{
+    display: flex;
+}
+
+.topic-modal-content{
+    background: #fff;
+    border-radius: 18px;
+
+    width: min(560px, 100%);
+    max-height: 90vh;
+
+    padding: 32px;
+
+    position: relative;
+
+    overflow-y: auto;
+}
+
+.topic-form{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    margin-top: 20px;
+}
+
+.topic-label{
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-top: 14px;
+    margin-bottom: 4px;
+}
+
+.topic-input,
+.topic-textarea{
+    font-family: Arial;
+    font-size: 15px;
+    color: #1a1a1a;
+
+    padding: 12px 14px;
+
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+
+    width: 100%;
+}
+
+.topic-input:focus,
+.topic-textarea:focus{
+    outline: none;
+    border-color: var(--naranja);
+}
+
+.topic-textarea{
+    min-height: 120px;
+    resize: vertical;
+    font-family: Arial;
+}
+
+.topic-submit{
+    width: 100%;
+    height: auto;
+
+    margin-top: 22px;
+    padding: 14px 0;
+
+    border-radius: 30px;
+
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+@media (max-width:768px){
+
+    .forum-auth{
+        justify-content: center;
+    }
+
+    .topic-modal-content{
+        padding: 24px;
+    }
+
+}
+
+
+/* ===================================
+   TEMA (detalle) — DETALLE Y COMENTARIOS
+=================================== */
+
+.back-link{
+    color: var(--naranja);
+    text-decoration: none;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.back-link:hover{
+    text-decoration: underline;
+}
+
+.topic-detail{
+    width: min(900px, 90%);
+    margin: 0 auto 40px;
+}
+
+.topic-detail-card{
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 30px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+.topic-detail-content{
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--gris-texto);
+
+    margin: 14px 0 20px;
+}
+
+.comment-form-wrapper{
+    width: min(900px, 90%);
+    margin: 0 auto 30px;
+
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px 30px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+.comments-title{
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.comment-form-wrapper .forum-auth{
+    width: 100%;
+    margin-bottom: 18px;
+    justify-content: flex-start;
+}
+
+.comments-list{
+    width: min(900px, 90%);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.comment-item{
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 22px;
+
+    display: flex;
+    gap: 14px;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,.05);
+}
+
+.comment-avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.comment-avatar--placeholder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--naranja);
+    color: #fff;
+
+    font-family: Georgia, serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.comment-body{
+    flex-grow: 1;
+}
+
+.comment-header{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.comment-header strong{
+    font-family: Arial;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.comment-date{
+    font-family: Arial;
+    font-size: 12px;
+    color: #8a8a8a;
+}
+
+.comment-text{
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gris-texto);
+}
+
+@media (max-width:768px){
+
+    .topic-detail-card,
+    .comment-form-wrapper{
+        padding: 20px;
+    }
+
+}
