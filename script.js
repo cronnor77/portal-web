@@ -917,3 +917,66 @@ if(filtroForo){
     });
 
 }
+
+/* LIGHTBOX (galería de imágenes — reutilizable en cualquier página
+   que tenga .gallery-item con data-full y el markup del #lightbox) */
+
+const lightbox = document.getElementById("lightbox");
+
+if(lightbox){
+
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxClose = document.getElementById("lightbox-close");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    function abrirLightbox(src, alt){
+
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "";
+        lightbox.classList.add("is-open");
+
+    }
+
+    function cerrarLightbox(){
+
+        lightbox.classList.remove("is-open");
+        lightboxImg.src = "";
+
+    }
+
+    galleryItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            const full = item.dataset.full || item.querySelector("img").src;
+            const alt = item.querySelector("img").alt;
+
+            abrirLightbox(full, alt);
+
+        });
+
+    });
+
+    lightboxClose.addEventListener("click", cerrarLightbox);
+
+    /* Cerrar haciendo clic fuera de la imagen (en el fondo oscuro) */
+
+    lightbox.addEventListener("click", (e) => {
+
+        if(e.target === lightbox){
+            cerrarLightbox();
+        }
+
+    });
+
+    /* Cerrar con la tecla Escape */
+
+    document.addEventListener("keydown", (e) => {
+
+        if(e.key === "Escape" && lightbox.classList.contains("is-open")){
+            cerrarLightbox();
+        }
+
+    });
+
+}

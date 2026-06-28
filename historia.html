@@ -68,6 +68,46 @@
             <figcaption>[Crédito o descripción de la imagen de portada]</figcaption>
         </figure>
 
+        <!-- GALERÍA DE IMÁGENES (scroll horizontal, reutilizable) -->
+
+        <section class="gallery-section" aria-label="Galería de imágenes de Suljaa'">
+
+            <h2 class="gallery-title">Galería de Suljaa'</h2>
+
+            <div class="gallery-scroll" id="gallery-historia">
+
+                <button class="gallery-item" type="button" data-full="img/historia-portada.webp">
+                    <img src="img/historia-portada.webp" alt="Vista general de Suljaa'">
+                </button>
+
+                <button class="gallery-item" type="button" data-full="img/historia-1.webp">
+                    <img src="img/historia-1.webp" alt="Fundación de Suljaa'">
+                </button>
+
+                <button class="gallery-item" type="button" data-full="img/historia-2.webp">
+                    <img src="img/historia-2.webp" alt="Tradiciones de Suljaa'">
+                </button>
+
+                <button class="gallery-item" type="button" data-full="img/cosmovision.webp">
+                    <img src="img/cosmovision.webp" alt="Cosmovisión Ñomndaa">
+                </button>
+
+                <button class="gallery-item" type="button" data-full="img/vestimenta-1.webp">
+                    <img src="img/vestimenta-1.webp" alt="Vestimenta tradicional">
+                </button>
+
+                <button class="gallery-item" type="button" data-full="img/vestimenta-2.webp">
+                    <img src="img/vestimenta-2.webp" alt="Telar y bordado">
+                </button>
+
+                <button class="gallery-item" type="button" data-full="img/gastronomia.webp">
+                    <img src="img/gastronomia.webp" alt="Gastronomía local">
+                </button>
+
+            </div>
+
+        </section>
+
         <article class="article-body">
 
             <p class="article-lead">
@@ -330,6 +370,16 @@
         </section>
 
     </main>
+
+    <!-- LIGHTBOX (reutilizable para cualquier galería del sitio) -->
+
+    <div class="lightbox" id="lightbox">
+
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Cerrar">✕</button>
+
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+
+    </div>
 
     <!-- JAVASCRIPT -->
 

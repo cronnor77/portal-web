@@ -75,6 +75,10 @@ ul li a{
 ul li a:hover{
     color: #ff7200;
 }
+/*Desactivar el buscador */
+.search{
+    display: none;
+}
 
 .search{
     width: 330px;
@@ -1863,7 +1867,7 @@ ul li a:hover{
         rgba(0,0,0,0.65) 30%,
         rgba(0,0,0,0.65) 100%
     ),
-    url("img/mapa-hero.jpg");
+    url("img/mapa-hero.webp");
 
     background-position: center;
     background-size: cover;
@@ -4398,7 +4402,7 @@ ul li a:hover{
         rgba(0,0,0,0.65) 30%,
         rgba(0,0,0,0.65) 100%
     ),
-    url("img/mapa-hero.jpg");
+    url("img/mapa-hero.webp");
 
     background-position: center;
     background-size: cover;
@@ -5375,6 +5379,201 @@ ul li a:hover{
     .topic-detail-card,
     .comment-form-wrapper{
         padding: 20px;
+    }
+
+}
+
+/* ===================================
+   GALERÍA DE IMÁGENES — SCROLL HORIZONTAL
+   Componente reutilizable (usar también en Turismo y Negocios).
+   Solo requiere: .gallery-section > .gallery-scroll > .gallery-item > img
+=================================== */
+
+.gallery-section{
+    width: min(1100px, 92%);
+    margin: 0 auto 50px;
+}
+
+.gallery-title{
+    font-family: Georgia, serif;
+    font-size: 26px;
+    color: #1a1a1a;
+    margin-bottom: 18px;
+
+    border-left: 4px solid var(--naranja);
+    padding-left: 14px;
+}
+
+.gallery-scroll{
+    display: flex;
+    gap: 18px;
+
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+
+    padding: 6px 6px 16px;
+
+    /* Scroll suave también al usar flechas de teclado o botones futuros */
+    scroll-behavior: smooth;
+
+    /* Funciona con mouse (arrastrando la barra o rueda lateral)
+       y con el dedo en celular (touch nativo del navegador) sin JS extra */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Barra de scroll discreta, acorde al estilo del sitio */
+
+.gallery-scroll::-webkit-scrollbar{
+    height: 8px;
+}
+
+.gallery-scroll::-webkit-scrollbar-track{
+    background: #eee;
+    border-radius: 10px;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb{
+    background: var(--naranja);
+    border-radius: 10px;
+}
+
+.gallery-item{
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+
+    width: 240px;
+    height: 170px;
+
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+
+    padding: 0;
+    background: none;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.1);
+    cursor: pointer;
+
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.gallery-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    transition: transform .4s ease;
+}
+
+.gallery-item:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0,0,0,.18);
+}
+
+.gallery-item:hover img{
+    transform: scale(1.08);
+}
+
+.gallery-item:focus-visible{
+    outline: 3px solid var(--naranja);
+    outline-offset: 2px;
+}
+
+@media (max-width:768px){
+
+    .gallery-title{
+        font-size: 22px;
+    }
+
+    .gallery-item{
+        width: 190px;
+        height: 140px;
+    }
+
+}
+
+/* ===================================
+   LIGHTBOX — VISOR DE IMÁGENES
+   Reutilizable: cualquier .gallery-item con data-full lo activa
+=================================== */
+
+.lightbox{
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+
+    background: rgba(0,0,0,.85);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.lightbox.is-open{
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-img{
+    max-width: 90vw;
+    max-height: 85vh;
+
+    border-radius: 12px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+
+    transform: scale(.92);
+    transition: transform .25s ease;
+}
+
+.lightbox.is-open .lightbox-img{
+    transform: scale(1);
+}
+
+.lightbox-close{
+    position: fixed;
+    top: 24px;
+    right: 28px;
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.15);
+    color: #fff;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.lightbox-close:hover{
+    background: var(--naranja);
+}
+
+@media (max-width:768px){
+
+    .lightbox{
+        padding: 16px;
+    }
+
+    .lightbox-close{
+        top: 16px;
+        right: 16px;
+
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
     }
 
 }
