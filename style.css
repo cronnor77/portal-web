@@ -565,39 +565,78 @@ ul li a:hover{
 }
 
 .article-figure{
-    margin: 0 auto 50px;
+    margin: 0 auto 56px;
 }
 
 .article-figure--full{
     width: min(1000px, 92%);
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 14px 36px rgba(0,0,0,.1);
+
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.article-figure--full:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px rgba(0,0,0,.14);
 }
 
 .article-figure--full img{
     width: 100%;
     height: 460px;
     object-fit: cover;
-    border-radius: 14px;
     display: block;
+
+    transition: transform .5s ease;
+}
+
+.article-figure--full:hover img{
+    transform: scale(1.03);
 }
 
 .article-figure--inline{
     width: min(720px, 90%);
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 28px rgba(0,0,0,.08);
+
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.article-figure--inline:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.12);
 }
 
 .article-figure--inline img{
     width: 100%;
     height: 360px;
     object-fit: cover;
-    border-radius: 10px;
     display: block;
+
+    transition: transform .5s ease;
+}
+
+.article-figure--inline:hover img{
+    transform: scale(1.03);
 }
 
 .article-figure figcaption{
     font-family: Arial;
     font-size: 13px;
+    font-style: italic;
     color: #8a8a8a;
-    margin-top: 10px;
+
+    padding: 12px 16px;
     text-align: center;
+
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,.05);
 }
 
 .article-body{
@@ -689,7 +728,7 @@ ul li a:hover{
 .timeline{
     width: min(800px, 90%);
     margin: 0 auto;
-    padding: 50px 0 20px;
+    padding: 60px 0 30px;
 }
 
 .timeline-title{
@@ -697,27 +736,50 @@ ul li a:hover{
     font-size: 32px;
     color: #1a1a1a;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .timeline-track{
     position: relative;
-    padding-left: 30px;
+    padding-left: 36px;
+}
 
-    border-left: 2px solid rgba(255,114,0,.3);
+/* Línea vertical elegante con degradado, en vez de un borde plano */
+
+.timeline-track::before{
+    content: "";
+
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+
+    width: 2px;
+
+    background: linear-gradient(
+        to bottom,
+        var(--naranja),
+        rgba(255,114,0,.15)
+    );
 }
 
 .timeline-item{
     position: relative;
-    margin-bottom: 42px;
+    margin-bottom: 34px;
 }
+
+.timeline-item:last-child{
+    margin-bottom: 0;
+}
+
+/* Punto circular con halo suave alrededor */
 
 .timeline-item::before{
     content: "";
 
     position: absolute;
-    left: -38px;
-    top: 4px;
+    left: -36px;
+    top: 6px;
 
     width: 14px;
     height: 14px;
@@ -725,28 +787,51 @@ ul li a:hover{
     background: var(--naranja);
     border-radius: 50%;
     border: 3px solid var(--crema);
+
+    box-shadow: 0 0 0 4px rgba(255,114,0,.15);
+
+    z-index: 2;
+}
+
+/* Tarjeta moderna alrededor del contenido de cada hito */
+
+.timeline-content{
+    background: #fff;
+    border-radius: 14px;
+
+    padding: 18px 22px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.timeline-content:hover{
+    transform: translateX(4px) translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.1);
 }
 
 .timeline-year{
     display: inline-block;
     font-family: Arial;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
+    text-transform: uppercase;
     color: var(--naranja);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .timeline-content h3{
     font-family: Georgia, serif;
-    font-size: 22px;
+    font-size: 21px;
     color: #1a1a1a;
     margin-bottom: 6px;
 }
 
 .timeline-content p{
     font-family: Arial;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.6;
     color: var(--gris-texto);
 }
@@ -754,20 +839,29 @@ ul li a:hover{
 /* ---------- ACORDEÓN CULTURAL (historia) ---------- */
 
 .culture-accordion{
-    margin: 36px 0 50px;
+    margin: 40px 0 56px;
 }
 
 .accordion-item{
     background: #fff;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 10px;
-    margin-bottom: 12px;
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 14px;
+    margin-bottom: 16px;
     overflow: hidden;
-    transition: box-shadow .25s ease;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,.04);
+
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.accordion-item:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0,0,0,.08);
 }
 
 .accordion-item.is-open{
-    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    box-shadow: 0 10px 28px rgba(255,114,0,.12);
+    border-color: rgba(255,114,0,.25);
 }
 
 .accordion-trigger{
@@ -776,7 +870,7 @@ ul li a:hover{
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 20px 24px;
+    padding: 22px 26px;
 
     background: none;
     border: none;
@@ -787,13 +881,17 @@ ul li a:hover{
     color: #1a1a1a;
     text-align: left;
 
-    transition: background .2s ease;
+    transition: background .25s ease, color .25s ease;
 }
 
 .accordion-trigger:hover,
 .accordion-trigger:focus-visible{
-    background: rgba(255,114,0,.06);
+    background: rgba(255,114,0,.07);
     outline: none;
+}
+
+.accordion-item.is-open .accordion-trigger{
+    color: var(--naranja);
 }
 
 .accordion-trigger:focus-visible{
@@ -802,9 +900,19 @@ ul li a:hover{
 
 .accordion-icon{
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     position: relative;
+
+    border-radius: 50%;
+    background: rgba(255,114,0,.08);
+
+    transition: background .3s ease, transform .35s ease;
+}
+
+.accordion-item.is-open .accordion-icon{
+    background: var(--naranja);
+    transform: rotate(180deg);
 }
 
 .accordion-icon::before,
@@ -814,7 +922,12 @@ ul li a:hover{
     top: 50%;
     left: 50%;
     background: var(--naranja);
-    transition: transform .3s ease;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.accordion-item.is-open .accordion-icon::before,
+.accordion-item.is-open .accordion-icon::after{
+    background: #fff;
 }
 
 .accordion-icon::before{
@@ -837,7 +950,7 @@ ul li a:hover{
 .accordion-panel{
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows .35s ease;
+    transition: grid-template-rows .4s ease;
 }
 
 .accordion-item.is-open .accordion-panel{
@@ -846,11 +959,11 @@ ul li a:hover{
 
 .accordion-content{
     overflow: hidden;
-    padding: 0 24px;
+    padding: 0 26px;
 }
 
 .accordion-item.is-open .accordion-content{
-    padding-bottom: 24px;
+    padding-bottom: 28px;
 }
 
 .accordion-content p{
@@ -865,15 +978,25 @@ ul li a:hover{
 }
 
 .accordion-figure{
-    margin: 20px 0 24px;
+    margin: 22px 0 26px;
+
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
 .accordion-figure img{
     width: 100%;
     height: 220px;
     object-fit: cover;
-    border-radius: 8px;
     display: block;
+
+    transition: transform .4s ease;
+}
+
+.accordion-figure:hover img{
+    transform: scale(1.04);
 }
 
 .accordion-figure figcaption{
@@ -881,14 +1004,15 @@ ul li a:hover{
     font-size: 13px;
     color: #8a8a8a;
     margin-top: 8px;
+    padding: 0 4px 2px;
     text-align: center;
 }
 
 .accordion-gallery{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin: 20px 0 24px;
+    gap: 16px;
+    margin: 22px 0 26px;
 }
 
 .accordion-gallery .accordion-figure{
@@ -3100,39 +3224,78 @@ ul li a:hover{
 }
 
 .article-figure{
-    margin: 0 auto 50px;
+    margin: 0 auto 56px;
 }
 
 .article-figure--full{
     width: min(1000px, 92%);
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 14px 36px rgba(0,0,0,.1);
+
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.article-figure--full:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px rgba(0,0,0,.14);
 }
 
 .article-figure--full img{
     width: 100%;
     height: 460px;
     object-fit: cover;
-    border-radius: 14px;
     display: block;
+
+    transition: transform .5s ease;
+}
+
+.article-figure--full:hover img{
+    transform: scale(1.03);
 }
 
 .article-figure--inline{
     width: min(720px, 90%);
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 28px rgba(0,0,0,.08);
+
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.article-figure--inline:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.12);
 }
 
 .article-figure--inline img{
     width: 100%;
     height: 360px;
     object-fit: cover;
-    border-radius: 10px;
     display: block;
+
+    transition: transform .5s ease;
+}
+
+.article-figure--inline:hover img{
+    transform: scale(1.03);
 }
 
 .article-figure figcaption{
     font-family: Arial;
     font-size: 13px;
+    font-style: italic;
     color: #8a8a8a;
-    margin-top: 10px;
+
+    padding: 12px 16px;
     text-align: center;
+
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,.05);
 }
 
 .article-body{
@@ -3224,7 +3387,7 @@ ul li a:hover{
 .timeline{
     width: min(800px, 90%);
     margin: 0 auto;
-    padding: 50px 0 20px;
+    padding: 60px 0 30px;
 }
 
 .timeline-title{
@@ -3232,27 +3395,50 @@ ul li a:hover{
     font-size: 32px;
     color: #1a1a1a;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .timeline-track{
     position: relative;
-    padding-left: 30px;
+    padding-left: 36px;
+}
 
-    border-left: 2px solid rgba(255,114,0,.3);
+/* Línea vertical elegante con degradado, en vez de un borde plano */
+
+.timeline-track::before{
+    content: "";
+
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+
+    width: 2px;
+
+    background: linear-gradient(
+        to bottom,
+        var(--naranja),
+        rgba(255,114,0,.15)
+    );
 }
 
 .timeline-item{
     position: relative;
-    margin-bottom: 42px;
+    margin-bottom: 34px;
 }
+
+.timeline-item:last-child{
+    margin-bottom: 0;
+}
+
+/* Punto circular con halo suave alrededor */
 
 .timeline-item::before{
     content: "";
 
     position: absolute;
-    left: -38px;
-    top: 4px;
+    left: -36px;
+    top: 6px;
 
     width: 14px;
     height: 14px;
@@ -3260,28 +3446,51 @@ ul li a:hover{
     background: var(--naranja);
     border-radius: 50%;
     border: 3px solid var(--crema);
+
+    box-shadow: 0 0 0 4px rgba(255,114,0,.15);
+
+    z-index: 2;
+}
+
+/* Tarjeta moderna alrededor del contenido de cada hito */
+
+.timeline-content{
+    background: #fff;
+    border-radius: 14px;
+
+    padding: 18px 22px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.timeline-content:hover{
+    transform: translateX(4px) translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.1);
 }
 
 .timeline-year{
     display: inline-block;
     font-family: Arial;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
+    text-transform: uppercase;
     color: var(--naranja);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .timeline-content h3{
     font-family: Georgia, serif;
-    font-size: 22px;
+    font-size: 21px;
     color: #1a1a1a;
     margin-bottom: 6px;
 }
 
 .timeline-content p{
     font-family: Arial;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.6;
     color: var(--gris-texto);
 }
@@ -3289,20 +3498,29 @@ ul li a:hover{
 /* ---------- ACORDEÓN CULTURAL (historia) ---------- */
 
 .culture-accordion{
-    margin: 36px 0 50px;
+    margin: 40px 0 56px;
 }
 
 .accordion-item{
     background: #fff;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 10px;
-    margin-bottom: 12px;
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 14px;
+    margin-bottom: 16px;
     overflow: hidden;
-    transition: box-shadow .25s ease;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,.04);
+
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.accordion-item:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0,0,0,.08);
 }
 
 .accordion-item.is-open{
-    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    box-shadow: 0 10px 28px rgba(255,114,0,.12);
+    border-color: rgba(255,114,0,.25);
 }
 
 .accordion-trigger{
@@ -3311,7 +3529,7 @@ ul li a:hover{
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 20px 24px;
+    padding: 22px 26px;
 
     background: none;
     border: none;
@@ -3322,13 +3540,17 @@ ul li a:hover{
     color: #1a1a1a;
     text-align: left;
 
-    transition: background .2s ease;
+    transition: background .25s ease, color .25s ease;
 }
 
 .accordion-trigger:hover,
 .accordion-trigger:focus-visible{
-    background: rgba(255,114,0,.06);
+    background: rgba(255,114,0,.07);
     outline: none;
+}
+
+.accordion-item.is-open .accordion-trigger{
+    color: var(--naranja);
 }
 
 .accordion-trigger:focus-visible{
@@ -3337,9 +3559,19 @@ ul li a:hover{
 
 .accordion-icon{
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     position: relative;
+
+    border-radius: 50%;
+    background: rgba(255,114,0,.08);
+
+    transition: background .3s ease, transform .35s ease;
+}
+
+.accordion-item.is-open .accordion-icon{
+    background: var(--naranja);
+    transform: rotate(180deg);
 }
 
 .accordion-icon::before,
@@ -3349,7 +3581,12 @@ ul li a:hover{
     top: 50%;
     left: 50%;
     background: var(--naranja);
-    transition: transform .3s ease;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.accordion-item.is-open .accordion-icon::before,
+.accordion-item.is-open .accordion-icon::after{
+    background: #fff;
 }
 
 .accordion-icon::before{
@@ -3372,7 +3609,7 @@ ul li a:hover{
 .accordion-panel{
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows .35s ease;
+    transition: grid-template-rows .4s ease;
 }
 
 .accordion-item.is-open .accordion-panel{
@@ -3381,11 +3618,11 @@ ul li a:hover{
 
 .accordion-content{
     overflow: hidden;
-    padding: 0 24px;
+    padding: 0 26px;
 }
 
 .accordion-item.is-open .accordion-content{
-    padding-bottom: 24px;
+    padding-bottom: 28px;
 }
 
 .accordion-content p{
@@ -3400,15 +3637,25 @@ ul li a:hover{
 }
 
 .accordion-figure{
-    margin: 20px 0 24px;
+    margin: 22px 0 26px;
+
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
 .accordion-figure img{
     width: 100%;
     height: 220px;
     object-fit: cover;
-    border-radius: 8px;
     display: block;
+
+    transition: transform .4s ease;
+}
+
+.accordion-figure:hover img{
+    transform: scale(1.04);
 }
 
 .accordion-figure figcaption{
@@ -3416,14 +3663,15 @@ ul li a:hover{
     font-size: 13px;
     color: #8a8a8a;
     margin-top: 8px;
+    padding: 0 4px 2px;
     text-align: center;
 }
 
 .accordion-gallery{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin: 20px 0 24px;
+    gap: 16px;
+    margin: 22px 0 26px;
 }
 
 .accordion-gallery .accordion-figure{
@@ -5574,6 +5822,38 @@ ul li a:hover{
         width: 38px;
         height: 38px;
         font-size: 18px;
+    }
+
+}
+
+/* ===================================
+   SCROLL REVEAL — ANIMACIÓN AL ENTRAR EN PANTALLA
+   Reutilizable: cualquier elemento con la clase .reveal aparece
+   con un efecto suave cuando entra en el viewport. El JS solo
+   agrega la clase .reveal-visible; todo el efecto vive aquí.
+=================================== */
+
+.reveal{
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Quien tenga activada la preferencia de "reducir movimiento"
+   en su sistema no debe recibir la animación, por accesibilidad */
+
+@media (prefers-reduced-motion: reduce){
+
+    .reveal{
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 
 }

@@ -980,3 +980,41 @@ if(lightbox){
     });
 
 }
+
+
+/* SCROLL REVEAL — animación suave al entrar en pantalla.
+   Usa IntersectionObserver (nativo del navegador, sin librerías)
+   en vez de escuchar el evento "scroll" directamente, que es
+   mucho más costoso en rendimiento. Cualquier elemento con la
+   clase .reveal en cualquier página queda cubierto por esto. */
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if(revealItems.length){
+
+    const revealObserver = new IntersectionObserver((entradas, observer) => {
+
+        entradas.forEach(entrada => {
+
+            if(entrada.isIntersecting){
+
+                entrada.target.classList.add("reveal-visible");
+
+                /* Una vez que ya apareció, deja de observarlo:
+                   evita trabajo innecesario en cada scroll futuro */
+                observer.unobserve(entrada.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealItems.forEach(item => {
+        revealObserver.observe(item);
+    });
+
+}
